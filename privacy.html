@@ -75,6 +75,14 @@
       color: #65757d;
       font-size: 0.95rem;
     }
+    @media (max-width: 640px) {
+      body {
+        padding-left: calc(12px + env(safe-area-inset-left));
+        padding-right: calc(12px + env(safe-area-inset-right));
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+    }
   </style>
   </head>
 <body>
