@@ -18,6 +18,8 @@
       --font-display: 'Fredoka', 'Quicksand', 'Arial Rounded MT Bold', Arial, sans-serif;
       --font-body: 'Quicksand', Arial, sans-serif;
     }
+    *, *::before, *::after { box-sizing: border-box; }
+    img, svg, video { max-width: 100%; height: auto; }
     /* NEW HERO */
     .hero-main {
       font-family: var(--font-display);
@@ -51,6 +53,10 @@
       line-height: 1.6;
     }
     .hero-solution { margin-bottom: 1rem; }
+    .hero-main,
+    .hero-tagline,
+    .hero-story,
+    .hero-solution { overflow-wrap: anywhere; word-break: break-word; }
     .hero-benefits {
       display: flex;
       flex-wrap: wrap;
@@ -58,6 +64,8 @@
       flex-direction: column;
       gap: 15px;
       margin: 0.1rem 0 1.1rem 0;
+      width: 100%;
+      justify-content: center;
     }
     .hero-benefits .pill {
       display: inline-flex;
@@ -71,13 +79,16 @@
       font-weight: 700;
       font-size: 0.98rem;
       box-shadow: 0 1px 8px rgba(78,205,196,0.08);
+      text-align: center;
+      white-space: normal;
+      max-width: 100%;
     }
     .cta-btn.hero-cta {
       font-size: 18px;
       padding: 18px 40px;
       box-shadow: 0 6px 22px rgba(26,83,92,0.16), 0 2px 8px rgba(78,205,196,0.16);
     }
-    html { scroll-behavior: smooth; overflow-x: hidden; max-width: 100vw; }
+    html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
     body {
       margin: 0;
       font-family: var(--font-body);
@@ -86,7 +97,7 @@
       font-size: 1.13rem;
       line-height: 1.6;
       overflow-x: hidden;
-      max-width: 100vw;
+      width: 100%;
     }
     header, section, footer {
       width: 100%;
@@ -514,6 +525,7 @@
       border-collapse: collapse;
       margin: 0 auto;
       max-width: 1000px;
+      table-layout: fixed;
       box-shadow: 0 1px 10px rgba(78,205,196,0.08);
       border-radius: var(--radius);
       overflow: hidden;
@@ -532,6 +544,7 @@
       padding: 0.85rem 0.9rem;
       border-bottom: 1px solid #e8f4f3;
       font-size: 1.02rem;
+      word-break: break-word;
     }
     .comparison-table td { color: #3f525b; }
     .comparison-table tr:nth-child(even) td { background: #ffffff; }
@@ -928,7 +941,7 @@
         </div>
       </div>
     </section>
-  </main>
+  
   <!-- FOOTER -->
   <footer>
     <div>
