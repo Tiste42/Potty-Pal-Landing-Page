@@ -637,22 +637,57 @@
       color: #975a16 !important;
     }
     @media (max-width: 640px) {
-      .comparison-table { 
-        font-size: 0.9rem; 
-        min-width: 580px;
-      }
-      .comparison-table thead th { 
-        font-size: 0.95rem; 
-        padding: 0.7rem 0.6rem;
-      }
-      .comparison-table th,
-      .comparison-table td {
-        padding: 0.7rem 0.6rem;
-      }
       .comparison-container {
         margin: 0 -20px;
         border-radius: 0;
         box-shadow: none;
+        position: relative;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .comparison-table { 
+        font-size: 0.85rem; 
+        min-width: 480px;
+        table-layout: fixed;
+      }
+      .comparison-table thead th { 
+        font-size: 0.9rem; 
+        padding: 0.6rem 0.4rem;
+      }
+      .comparison-table th,
+      .comparison-table td {
+        padding: 0.6rem 0.4rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      /* Sticky first column on mobile */
+      .comparison-table thead th:first-child,
+      .comparison-table td:first-child {
+        position: sticky;
+        left: 0;
+        z-index: 10;
+        width: 110px;
+        min-width: 110px;
+        max-width: 110px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        overflow: visible;
+        text-overflow: clip;
+        white-space: normal;
+      }
+      .comparison-table thead th:first-child {
+        background: #e6f7e6 !important;
+        z-index: 11;
+      }
+      .comparison-table td:first-child {
+        background: #f0f9f4 !important;
+      }
+      /* Adjust other columns for better mobile fit */
+      .comparison-table th:not(:first-child),
+      .comparison-table td:not(:first-child) {
+        width: 85px;
+        min-width: 85px;
+        max-width: 85px;
       }
       .pricing-cards { gap: 1rem; }
       .pricing-card { max-width: 100%; }
