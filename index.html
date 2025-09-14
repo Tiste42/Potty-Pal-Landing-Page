@@ -18,6 +18,36 @@
       --font-display: 'Fredoka', 'Quicksand', 'Arial Rounded MT Bold', Arial, sans-serif;
       --font-body: 'Quicksand', Arial, sans-serif;
     }
+    /* Global centering + mobile-safe defaults */
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    .logo-hero, section {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    /* Responsive logo sizing (use container sizing) */
+    /* Hero type adjustments */
+    .hero-main { font-size: 2.5em; word-break: break-word; }
+    .hero-tagline { font-size: 1.5em; }
+    .hero-story, .hero-solution { line-height: 1.6; font-size: 1.1em; }
+    /* Benefit pills */
+    .hero-benefits { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:16px 0; }
+    .hero-benefits span { padding:6px 10px; border-radius:999px; background:#eafaf8; color: var(--accent2); border:1px solid #d6f5ef; font-weight:700; white-space:nowrap; font-size:0.95rem; }
+    /* CTA button uses existing gradient style via .cta-btn.hero-cta */
+    @media (max-width:768px){
+      .hero-main { font-size:2em; }
+      .hero-tagline { font-size:1.2em; }
+      .hero-story, .hero-solution { font-size:1em; }
+      .hero-benefits { flex-direction:column; }
+      .cta-btn.hero-cta { width:90%; max-width:300px; }
+    }
     *, *::before, *::after { box-sizing: border-box; }
     img, svg, video { max-width: 100%; height: auto; }
     /* NEW HERO */
@@ -756,14 +786,14 @@
     <div class="logo-hero">
       <img src="images/pottypallogolargetransparent.png?v=20250913" alt="Potty Pal AI Logo" class="hero-logo">
       </div>
-    <h1 class="hero-main">Your personalized potty training expert in your pocket 24/7</h1>
+    <h1 class="hero-main">The personalized potty training expert in your pocket</h1>
     <h2 class="hero-tagline">Everything you need. Nothing you don't.</h2>
-    <p class="hero-story">Searching through 100-page potty training books trying to find the 10 pages that actually apply to YOUR child? Impossible. Especially at 2 AM when you're exhausted and need answers now.</p>
-    <p class="hero-solution">Our AI is trained on all those expert books so you don't have to read them. It knows your child's age, personality, and tracks all your progress. Ask anything, anytime - get instant answers that actually work for YOUR situation.</p>
-    <div class="hero-benefits" role="list">
-      <span class="pill" role="listitem">📚 Trained on expert literature</span>
-      <span class="pill" role="listitem">🎯 Knows YOUR child's progress</span>
-      <span class="pill" role="listitem">💬 Ask anything, anytime</span>
+    <p class="hero-story">Searching through 100-page potty training books trying to find the 10 pages that actually apply to YOUR child?</p>
+    <p class="hero-solution">Our AI is trained on all those expert books so you don't have to read them. It understands your child's age, personality, and creates a custom plan. It also tracks all your progress, so you can ask anything, anytime, and get instant, personalized strategies that actually work for YOUR situation.</p>
+    <div class="hero-benefits">
+      <span>📚 Trained on expert literature</span>
+      <span>🎯 Knows YOUR child's progress</span>
+      <span>💬 Ask anything, anytime</span>
     </div>
     <a class="cta-btn hero-cta" href="#pricing">Start Free Today</a>
   </header>
@@ -773,19 +803,18 @@
       <div class="how-steps">
         <div class="how-step">
           <div class="step-num">1</div>
-          <h4>Ask Anything</h4>
-          <p>Type your questions—big or small. The AI coach responds instantly, no judgment, just support.</p>
+          <h4>Get Your Personalized Plan</h4>
+          <p>Start by telling Potty Pal AI about your child's age, personality, and your preferred training style. The AI then generates a custom, science-backed plan just for you.</p>
         </div>
         <div class="how-step">
           <div class="step-num">2</div>
-          <h4>Follow Your Custom Plan</h4>
-          <p>Get concise, expert-backed guidance matched to <u>your</u> child and your parenting style.</p>
+          <h4>Follow Your Plan & Ask Anything</h4>
+          <p>Implement your tailored plan with confidence. Get real-time, conversational advice from your AI expert for any question or challenge, day or night.</p>
         </div>
         <div class="how-step">
           <div class="step-num">3</div>
           <h4>Track & Celebrate Progress</h4>
-          <p>Log accidents, successes, timing, and notes. Your entries give the AI context to refine
-          advice—while you get a clear timeline of wins and patterns.</p>
+          <p>Log successes, accidents, and efforts easily. Your entries help the AI adapt its guidance and provide insights to celebrate every milestone.</p>
         </div>
       </div>
     </section>
