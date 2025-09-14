@@ -556,6 +556,7 @@
       max-width: 1000px;
       border-radius: var(--radius);
       box-shadow: 0 1px 10px rgba(78,205,196,0.08);
+      border: 2px solid var(--accent);
     }
     .comparison-table {
       width: 100%;
@@ -563,6 +564,7 @@
       border-collapse: collapse;
       background: #fafdff;
       border-radius: var(--radius);
+      overflow: hidden;
     }
     .comparison-table thead th {
       font-family: var(--font-display);
@@ -570,15 +572,27 @@
       color: var(--accent2);
       padding: 0.9rem;
       text-align: left;
-      border-bottom: 2px solid #d8f3ef;
+      border-bottom: 2px solid var(--accent);
+      border-right: 1px solid rgba(78, 205, 196, 0.3);
       white-space: nowrap;
+    }
+    .comparison-table thead th:last-child {
+      border-right: none;
     }
     .comparison-table th,
     .comparison-table td {
       padding: 0.85rem 0.9rem;
-      border-bottom: 1px solid #e8f4f3;
+      border-bottom: 1px solid rgba(78, 205, 196, 0.2);
+      border-right: 1px solid rgba(78, 205, 196, 0.3);
       font-size: 1.02rem;
       white-space: nowrap;
+    }
+    .comparison-table td:last-child,
+    .comparison-table th:last-child {
+      border-right: none;
+    }
+    .comparison-table tr:last-child td {
+      border-bottom: none;
     }
     .comparison-table td { color: #3f525b; }
     .comparison-table tr:nth-child(even) td { background: #ffffff; }
@@ -588,46 +602,36 @@
     .comparison-table thead th:first-child { 
       background: #e6f7e6 !important; 
       color: #14532d !important;
-      border-bottom: 2px solid #86efac !important;
-      border-right: 2px solid #86efac !important;
     }
     .comparison-table td:first-child { 
       background: #f0f9f4 !important; 
       color: #1a5a3a !important;
-      border-right: 2px solid #86efac !important;
     }
     
     /* Potty Peek column - Warm gray */
     .comparison-table thead .col-free { 
       background: #e5e7eb !important; 
       color: #374151 !important;
-      border-bottom: 2px solid #d1d5db !important;
-      border-right: 2px solid #d1d5db !important;
     }
     .comparison-table .col-free { 
       background: #f3f4f6 !important; 
       color: #4b5563 !important;
-      border-right: 2px solid #d1d5db !important;
     }
     
     /* Fast Flush column - Blue */
     .comparison-table thead .col-weekly { 
       background: #e6f3ff !important; 
       color: #1a365d !important;
-      border-bottom: 2px solid #90cdf4 !important;
-      border-right: 2px solid #90cdf4 !important;
     }
     .comparison-table .col-weekly { 
       background: #f0f8ff !important; 
       color: #2c5282 !important;
-      border-right: 2px solid #90cdf4 !important;
     }
     
     /* Royal Flush column - Yellow/Gold */
     .comparison-table thead .col-lifetime { 
       background: #fffbf0 !important; 
       color: #744210 !important;
-      border-bottom: 2px solid #f6e05e !important;
     }
     .comparison-table .col-lifetime { 
       background: #fffef7 !important; 
