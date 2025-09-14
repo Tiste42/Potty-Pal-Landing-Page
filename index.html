@@ -617,27 +617,76 @@
       background: #fff;
       border-radius: var(--radius);
       box-shadow: 0 1px 10px rgba(78,205,196,0.08);
-      padding: 1.1rem 1rem;
+      overflow: hidden;
+      transition: box-shadow 0.2s ease;
     }
-    .faq-item h3 {
-      margin: 0 0 0.4rem;
+    .faq-item:hover {
+      box-shadow: 0 4px 20px rgba(78,205,196,0.12);
+    }
+    .faq-header {
+      padding: 1.1rem 1rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.2s ease;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+    }
+    .faq-header:hover {
+      background-color: #f8fdfc;
+    }
+    .faq-header h3 {
+      margin: 0;
       font-size: 1.12rem;
       color: var(--accent2);
       font-family: var(--font-display);
+      flex: 1;
     }
-    .faq-item p {
-      margin: 0;
+    .faq-toggle {
+      font-size: 1.5rem;
+      color: var(--accent);
+      transition: transform 0.3s ease;
+      margin-left: 1rem;
+      flex-shrink: 0;
+    }
+    .faq-item.active .faq-toggle {
+      transform: rotate(45deg);
+    }
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      background-color: #fafdff;
+    }
+    .faq-item.active .faq-content {
+      max-height: 1000px;
+    }
+    .faq-content-inner {
+      padding: 0 1rem 1.1rem 1rem;
+      text-align: left;
+    }
+    .faq-content p {
+      margin: 0 0 0.5rem 0;
       color: #485560;
       font-size: 1.02rem;
+      text-align: left;
     }
-    .faq-item ul {
+    .faq-content p:last-child {
+      margin-bottom: 0;
+    }
+    .faq-content ul {
       margin: 0.4rem 0 0.4rem 1rem;
       padding-left: 0.75rem;
       color: #485560;
       font-size: 1.02rem;
+      text-align: left;
     }
-    .faq-item li {
+    .faq-content li {
       margin: 0.25rem 0;
+      text-align: left;
     }
     /* Downloads */
     #downloads {
@@ -934,39 +983,88 @@
       <h2 class="pricing-title">Pricing & Access FAQ</h2>
       <div class="faq-list">
         <div class="faq-item">
-          <h3>Is Weekly Access a subscription?</h3>
-          <p>No. It's a one-time, non-renewing purchase that unlocks all premium features for 7 days.</p>
+          <button class="faq-header">
+            <h3>Is Weekly Access a subscription?</h3>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-content-inner">
+              <p>No. It's a one-time, non-renewing purchase that unlocks all premium features for 7 days.</p>
+            </div>
+          </div>
         </div>
         <div class="faq-item">
-          <h3>What happens after my 7 days?</h3>
-          <p>Your account returns to the Free plan limits. You can buy another week anytime—no auto-charges.</p>
+          <button class="faq-header">
+            <h3>What happens after my 7 days?</h3>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-content-inner">
+              <p>Your account returns to the Free plan limits. You can buy another week anytime—no auto-charges.</p>
+            </div>
+          </div>
         </div>
         <div class="faq-item">
-          <h3>What's included in the Free plan?</h3>
-          <p>2 AI queries/day, a one-time static plan (not editable), and full access to progress logs. Reminders are not included.</p>
+          <button class="faq-header">
+            <h3>What's included in the Free plan?</h3>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-content-inner">
+              <p>2 AI queries/day, a one-time static plan (not editable), and full access to progress logs. Reminders are not included.</p>
+            </div>
+          </div>
         </div>
         <div class="faq-item">
-          <h3>What do I get with Lifetime?</h3>
-          <p>Unlimited AI queries, reminders, and fully adjustable plans—forever. Pay once, use forever.</p>
+          <button class="faq-header">
+            <h3>What do I get with Lifetime?</h3>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-content-inner">
+              <p>Unlimited AI queries, reminders, and fully adjustable plans—forever. Pay once, use forever.</p>
+            </div>
+          </div>
         </div>
         <div class="faq-item">
-          <h3>Any hidden fees or recurring charges?</h3>
-          <p>No. We do not auto-renew or auto-charge. Taxes may apply depending on your region.</p>
+          <button class="faq-header">
+            <h3>Any hidden fees or recurring charges?</h3>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-content-inner">
+              <p>No. We do not auto-renew or auto-charge. Taxes may apply depending on your region.</p>
+            </div>
+          </div>
         </div>
         <div class="faq-item">
-          <h3>What is your refund policy?</h3>
-          <p>We want you to feel completely confident trying Potty Pal AI. If your Weekly or Lifetime purchase isn’t a fit, request a refund within 24 hours of purchase and we’ll issue a full refund—no hoops, no hassle. After 24 hours, sales are final so we can keep pricing simple and fair for everyone.</p>
+          <button class="faq-header">
+            <h3>What is your refund policy?</h3>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-content-inner">
+              <p>We want you to feel completely confident trying Potty Pal AI. If your Weekly or Lifetime purchase isn't a fit, request a refund within 24 hours of purchase and we'll issue a full refund—no hoops, no hassle. After 24 hours, sales are final so we can keep pricing simple and fair for everyone.</p>
+            </div>
+          </div>
         </div>
         <div class="faq-item">
-          <h3>Why can't I just ask ChatGPT for potty training advice?</h3>
-          <p>While ChatGPT can offer general advice, Potty Pal AI provides a fundamentally different and superior experience because it's built specifically for your child. Our expert AI doesn't just give generic answers; it learns and adapts based on:</p>
-          <ul class="faq-subpoints">
-            <li><b>Your Child's Unique Profile</b>: Age, gender, specific needs, and your chosen training method.</li>
-            <li><b>Personalized Context</b>: Your AI securely accesses your child's entire potty training journey, including all logged events (like that little accident this morning!). This means it understands your child's progress and challenges, providing advice that's truly tailored and relevant.</li>
-            <li><b>Science-Backed Expertise</b>: Our AI is rigorously trained on the latest, science-backed potty training information, covering multiple proven methods. You get reliable, expert guidance without needing to stress about correct prompting or providing constant context.</li>
-            <li><b>Data Security</b>: Your child's journey data is saved securely, ensuring privacy while enabling highly personalized support.</li>
-          </ul>
-          <p>This holistic approach means you receive precise, actionable advice that evolves with your child, making your potty training journey smoother and more effective than any generic AI ever could.</p>
+          <button class="faq-header">
+            <h3>Why can't I just ask ChatGPT for potty training advice?</h3>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-content-inner">
+              <p>While ChatGPT can offer general advice, Potty Pal AI provides a fundamentally different and superior experience because it's built specifically for your child. Our expert AI doesn't just give generic answers; it learns and adapts based on:</p>
+              <ul class="faq-subpoints">
+                <li><b>Your Child's Unique Profile</b>: Age, gender, specific needs, and your chosen training method.</li>
+                <li><b>Personalized Context</b>: Your AI securely accesses your child's entire potty training journey, including all logged events (like that little accident this morning!). This means it understands your child's progress and challenges, providing advice that's truly tailored and relevant.</li>
+                <li><b>Science-Backed Expertise</b>: Our AI is rigorously trained on the latest, science-backed potty training information, covering multiple proven methods. You get reliable, expert guidance without needing to stress about correct prompting or providing constant context.</li>
+                <li><b>Data Security</b>: Your child's journey data is saved securely, ensuring privacy while enabling highly personalized support.</li>
+              </ul>
+              <p>This holistic approach means you receive precise, actionable advice that evolves with your child, making your potty training journey smoother and more effective than any generic AI ever could.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1015,6 +1113,34 @@
       };
       window.addEventListener('scroll', revealOnScroll);
       revealOnScroll(); // Initial check
+
+      // FAQ Accordion functionality
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(item => {
+        const header = item.querySelector('.faq-header');
+        const toggle = item.querySelector('.faq-toggle');
+        
+        header.addEventListener('click', () => {
+          const isActive = item.classList.contains('active');
+          
+          // Close all other FAQ items
+          faqItems.forEach(otherItem => {
+            if (otherItem !== item) {
+              otherItem.classList.remove('active');
+              otherItem.querySelector('.faq-toggle').textContent = '+';
+            }
+          });
+          
+          // Toggle current item
+          if (isActive) {
+            item.classList.remove('active');
+            toggle.textContent = '+';
+          } else {
+            item.classList.add('active');
+            toggle.textContent = '−';
+          }
+        });
+      });
     });
   </script>
 </body>
