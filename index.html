@@ -828,9 +828,152 @@
         padding-bottom: env(safe-area-inset-bottom);
       }
     }
+
+    /* HAMBURGER MENU STYLES */
+    .hamburger-menu {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 12px rgba(78, 205, 196, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .hamburger-menu:hover {
+      background: rgba(255, 255, 255, 1);
+      box-shadow: 0 4px 20px rgba(78, 205, 196, 0.25);
+    }
+
+    .hamburger-line {
+      width: 24px;
+      height: 3px;
+      background: var(--accent2);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger-menu.active .hamburger-line:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .hamburger-menu.active .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger-menu.active .hamburger-line:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(15px);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-menu a {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent2);
+      text-decoration: none;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      text-align: center;
+      min-width: 200px;
+    }
+
+    .mobile-menu a:hover {
+      background: var(--accent);
+      color: white;
+      transform: scale(1.05);
+    }
+
+    .mobile-menu .menu-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .mobile-menu .menu-divider {
+      width: 2px;
+      height: 40px;
+      background: var(--accent);
+      margin: 1rem 0;
+    }
+
+    .mobile-menu .menu-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Hide hamburger menu on desktop */
+    @media (min-width: 769px) {
+      .hamburger-menu {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- HAMBURGER MENU -->
+  <div class="hamburger-menu" id="hamburgerMenu">
+    <div class="hamburger-line"></div>
+    <div class="hamburger-line"></div>
+    <div class="hamburger-line"></div>
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="menu-section">
+      <div class="menu-title">Navigate</div>
+      <a href="#how" class="menu-link">How It Works</a>
+      <a href="#pricing" class="menu-link">Pricing</a>
+      <a href="#comparison" class="menu-link">Compare Plans</a>
+      <a href="#faq" class="menu-link">FAQ</a>
+    </div>
+    
+    <div class="menu-divider"></div>
+    
+    <div class="menu-section">
+      <div class="menu-title">Legal</div>
+      <a href="privacy.html" class="menu-link" target="_blank">Privacy Policy</a>
+      <a href="terms.html" class="menu-link" target="_blank">Terms of Use</a>
+    </div>
+  </div>
+
   <header>
     <div class="logo-hero">
       <img src="images/pottypallogolargetransparent.png?v=20250913" alt="Potty Pal AI Logo" class="hero-logo">
@@ -1141,6 +1284,50 @@
             toggle.textContent = '−';
           }
         });
+      });
+
+      // Hamburger Menu functionality
+      const hamburgerMenu = document.getElementById('hamburgerMenu');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const menuLinks = document.querySelectorAll('.menu-link');
+
+      hamburgerMenu.addEventListener('click', () => {
+        hamburgerMenu.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        
+        // Prevent body scroll when menu is open
+        if (mobileMenu.classList.contains('active')) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = '';
+        }
+      });
+
+      // Close menu when clicking on menu links
+      menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          hamburgerMenu.classList.remove('active');
+          mobileMenu.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+
+      // Close menu when clicking outside
+      mobileMenu.addEventListener('click', (e) => {
+        if (e.target === mobileMenu) {
+          hamburgerMenu.classList.remove('active');
+          mobileMenu.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+
+      // Close menu on escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+          hamburgerMenu.classList.remove('active');
+          mobileMenu.classList.remove('active');
+          document.body.style.overflow = '';
+        }
       });
     });
   </script>
