@@ -18,6 +18,63 @@
       --font-display: 'Fredoka', 'Quicksand', 'Arial Rounded MT Bold', Arial, sans-serif;
       --font-body: 'Quicksand', Arial, sans-serif;
     }
+    /* NEW HERO */
+    .hero-main {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2rem, 4.8vw, 3.1rem);
+      line-height: 1.08;
+      letter-spacing: -0.6px;
+      text-align: center;
+      color: var(--accent2);
+      margin: 0.4rem auto 0.7rem;
+      max-width: 22ch;
+      text-wrap: balance;
+    }
+    .hero-tagline {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.15rem, 2.6vw, 1.6rem);
+      line-height: 1.2;
+      text-align: center;
+      color: var(--accent);
+      margin: 0 0 0.9rem 0;
+      text-wrap: balance;
+    }
+    .hero-story,
+    .hero-solution {
+      max-width: 62ch;
+      margin: 0.35rem auto;
+      font-size: 1.08rem;
+      color: #444;
+      text-align: center;
+    }
+    .hero-solution { margin-bottom: 1rem; }
+    .hero-benefits {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      margin: 0.1rem 0 1.1rem 0;
+    }
+    .hero-benefits .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #eafaf8;
+      color: var(--accent2);
+      border: 1.5px solid #d6f5ef;
+      border-radius: 999px;
+      padding: 0.55em 0.95em;
+      font-weight: 700;
+      font-size: 0.98rem;
+      box-shadow: 0 1px 8px rgba(78,205,196,0.08);
+    }
+    .cta-btn.hero-cta {
+      font-size: 1.12rem;
+      padding: 1.0em 2.4em;
+    }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
@@ -594,6 +651,8 @@
     }
     @media (max-width:500px) {
       .hero-title { font-size:2rem;}
+      .hero-main { max-width: 16ch; }
+      .hero-benefits .pill { font-size: 0.96rem; }
       .logo-hero { width:160px; height:160px; background-size:85% auto; }
       section, header, footer { padding-inline:1rem;}
     }
@@ -669,6 +728,16 @@
     <div class="logo-hero">
       <img src="images/pottypallogolargetransparent.png?v=20250913" alt="Potty Pal AI Logo" class="hero-logo">
       </div>
+    <h1 class="hero-main">Your personalized potty training expert in your pocket 24/7</h1>
+    <h2 class="hero-tagline">Everything you need. Nothing you don't.</h2>
+    <p class="hero-story">Searching through 100-page potty training books trying to find the 10 pages that actually apply to YOUR child? Impossible. Especially at 2 AM when you're exhausted and need answers now.</p>
+    <p class="hero-solution">Our AI is trained on all those expert books so you don't have to read them. It knows your child's age, personality, and tracks all your progress. Ask anything, anytime - get instant answers that actually work for YOUR situation.</p>
+    <div class="hero-benefits" role="list">
+      <span class="pill" role="listitem">📚 Trained on expert literature</span>
+      <span class="pill" role="listitem">🎯 Knows YOUR child's progress</span>
+      <span class="pill" role="listitem">💬 Ask anything, anytime</span>
+    </div>
+    <a class="cta-btn hero-cta" href="#pricing">Start Free Today</a>
   </header>
     <!-- HOW IT WORKS -->
     <section id="how" class="fade-in">
