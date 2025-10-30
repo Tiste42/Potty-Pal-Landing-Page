@@ -1067,7 +1067,7 @@
       <span>🎯 Knows YOUR child's progress</span>
       <span>💬 Ask anything, anytime</span>
     </div>
-    <a class="cta-btn hero-cta" href="#pricing">Start Free Today</a>
+    <a class="cta-btn hero-cta download-link" href="javascript:void(0)">Download the App</a>
   </header>
     <!-- HOW IT WORKS -->
     <section id="how" class="fade-in">
@@ -1109,7 +1109,7 @@
               <li>Basic App Functionality</li>
             </ul>
           </div>
-          <a class="cta-btn" href="#comparison">Start Free</a>
+          <a class="cta-btn download-link" href="javascript:void(0)">Download the App</a>
         </div>
         <div class="pricing-card">
           <div class="pricing-name">Fast Flush</div>
@@ -1126,7 +1126,7 @@
               <li>Option to Upgrade to Royal Flush (Lifetime) with Weekly Cost Credit</li>
             </ul>
           </div>
-          <a class="cta-btn" href="#comparison">Choose Fast Flush</a>
+          <a class="cta-btn download-link" href="javascript:void(0)">Download the App</a>
         </div>
         <div class="pricing-card popular">
           <div class="popular-badge">Best Value</div>
@@ -1143,7 +1143,7 @@
               <li>One-time Purchase for Lifetime Access</li>
             </ul>
           </div>
-          <a class="cta-btn" href="#comparison">Go Royal Flush</a>
+          <a class="cta-btn download-link" href="javascript:void(0)">Download the App</a>
         </div>
       </div>
       <div class="pricing-legal">All purchases are one-time and non-renewing. Taxes may apply based on your region. You will not be charged again unless you choose to buy another Fast Flush week in the future or upgrade to Royal Flush.</div>
@@ -1315,8 +1315,50 @@
   </footer>
   <!-- FADE-IN + SMOOTH-SCROLL JS -->
   <script>
+    // Smart download link function
+    function getAppStoreLink() {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      
+      // Check for iOS devices
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        return 'https://apps.apple.com/app/id6751612917';
+      }
+      
+      // Check for Android devices
+      if (/android/i.test(userAgent)) {
+        return 'https://play.google.com/store/apps/details?id=com.pottypalai.app';
+      }
+      
+      // Check for Windows Phone (legacy)
+      if (/windows phone/i.test(userAgent)) {
+        return 'https://play.google.com/store/apps/details?id=com.pottypalai.app';
+      }
+      
+      // Default: return both links (we'll show both)
+      return 'both';
+    }
+    
+    // Handle download button clicks
+    function handleDownloadClick(event) {
+      event.preventDefault();
+      const storeLink = getAppStoreLink();
+      
+      if (storeLink === 'both') {
+        // Show both links or default to Google Play
+        window.open('https://play.google.com/store/apps/details?id=com.pottypalai.app', '_blank');
+      } else {
+        window.open(storeLink, '_blank');
+      }
+    }
+    
     // Fade-in animation on scroll
     document.addEventListener('DOMContentLoaded', function () {
+      // Attach smart download links to all download buttons
+      const downloadButtons = document.querySelectorAll('.download-link');
+      downloadButtons.forEach(button => {
+        button.addEventListener('click', handleDownloadClick);
+      });
+      
       const fadeEls = document.querySelectorAll('.fade-in');
       // Remove decorative images entirely (keep only header logo)
       document.querySelectorAll('.story-image, .features-illustration').forEach(el => el.remove());
