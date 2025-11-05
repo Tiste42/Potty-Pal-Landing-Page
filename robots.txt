@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Allow: /blog/
+Allow: /blog/index.html
+Allow: /blog/category/
+Allow: /images/
+
+Disallow: /delete.html
+
+Sitemap: https://pottypalai.com/sitemap.xml
+
