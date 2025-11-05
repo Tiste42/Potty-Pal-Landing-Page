@@ -555,7 +555,7 @@
       
       grid.innerHTML = posts.map(post => `
         <a href="${post.slug}.html" class="post-card">
-          <img src="../images/blog/${post.image}" alt="${post.imageAlt}" class="post-card-image" loading="lazy">
+          <img src="/images/blog/${post.image}" alt="${post.imageAlt}" class="post-card-image" loading="lazy" onerror="this.style.display='none'">
           <div class="post-card-content">
             <div class="post-card-categories">
               <a href="category/${post.category}.html" class="post-card-category" onclick="event.stopPropagation();">${post.categoryName}</a>
