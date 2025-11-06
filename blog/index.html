@@ -15,7 +15,7 @@
   <meta name="description" content="Potty Pal AI Blog - Expert potty training tips, solutions to common problems, and guidance for parents. Learn from our comprehensive training resources." />
   <title>Potty Pal Blog - The Training Ground | Potty Pal AI</title>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Fredoka:wght@700&display=swap" rel="stylesheet">
-  <!-- LAYOUT VERSION 4 - NOV 5 2025 - HORIZONTAL FIX -->
+  <!-- ★★★ LAYOUT VERSION 5 - SYNCED AND DEPLOYED ★★★ -->
   <style>
     :root {
       --accent: #4ECDC4;
@@ -613,9 +613,9 @@
       noResults.style.display = 'none';
       
       grid.innerHTML = posts.map(post => `
-        <a href="${post.slug}.html" class="post-card" style="display: flex; flex-direction: row;">
-          <img src="/images/blog/${post.image}" alt="${post.imageAlt}" class="post-card-image" loading="lazy" onerror="this.style.display='none'" style="width: 240px; height: 160px; flex-shrink: 0;">
-          <div class="post-card-content" style="flex: 1;">
+        <a href="${post.slug}.html" class="post-card" style="display: flex !important; flex-direction: row !important; align-items: center;">
+          <img src="/images/blog/${post.image}" alt="${post.imageAlt}" class="post-card-image" loading="lazy" style="width: 240px; min-width: 240px; height: 160px; object-fit: cover; flex-shrink: 0; display: block;">
+          <div class="post-card-content" style="flex: 1; padding: 1.5rem;">
             <div class="post-card-categories">
               <a href="category/${post.category}.html" class="post-card-category" onclick="event.stopPropagation();">${post.categoryName}</a>
             </div>
