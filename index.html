@@ -15,7 +15,8 @@
   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
   <title>Potty Pal AI – Smart Potty Training</title>
   <!-- Google Fonts: Quicksand & Fredoka -->
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Fredoka:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Fredoka:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/site-nav.css">
   <style>
     :root {
       --accent: #4ECDC4;
@@ -1103,23 +1104,24 @@
       }
     }
   </style>
-</head>
+    <script defer src="scripts/site-nav.js"></script>
+  </head>
 <body>
   <!-- DESKTOP NAVIGATION -->
-  <nav class="desktop-nav">
-    <div class="desktop-nav-container">
-      <a href="index.html" class="desktop-nav-logo">Potty Pal AI</a>
-      <div class="desktop-nav-links">
-        <a href="blog/index.html">Blog</a>
-        <a href="#how">How It Works</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#faq">FAQ</a>
-        <a href="privacy.html" target="_blank">Privacy</a>
-        <a href="terms.html" target="_blank">Terms</a>
-        <a href="javascript:void(0)" class="download-link">Download App</a>
+    <nav class="desktop-nav">
+      <div class="desktop-nav-container">
+        <a href="/" class="desktop-nav-logo">Potty Pal AI</a>
+        <div class="desktop-nav-links">
+          <a href="/blog/">Blog</a>
+          <a href="/#how">How It Works</a>
+          <a href="/#pricing">Pricing</a>
+          <a href="/#faq">FAQ</a>
+          <a href="/privacy.html" target="_blank">Privacy</a>
+          <a href="/terms.html" target="_blank">Terms</a>
+          <a href="javascript:void(0)" class="download-link">Download App</a>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
   <!-- HAMBURGER MENU -->
   <div class="hamburger-menu" id="hamburgerMenu">
@@ -1129,24 +1131,25 @@
   </div>
 
   <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="menu-section">
-      <div class="menu-title">Navigate</div>
-      <a href="blog/index.html" class="menu-link">Potty Pal Blog</a>
-      <a href="#how" class="menu-link">How It Works</a>
-      <a href="#pricing" class="menu-link">Pricing</a>
-      <a href="#comparison" class="menu-link">Compare Plans</a>
-      <a href="#faq" class="menu-link">FAQ</a>
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="menu-section">
+        <div class="menu-title">Navigate</div>
+        <a href="/" class="menu-link">Home</a>
+        <a href="/blog/" class="menu-link">Potty Pal Blog</a>
+        <a href="/#how" class="menu-link">How It Works</a>
+        <a href="/#pricing" class="menu-link">Pricing</a>
+        <a href="/#faq" class="menu-link">FAQ</a>
+        <a href="javascript:void(0)" class="menu-link download-link">Download App</a>
+      </div>
+      
+      <div class="menu-divider"></div>
+      
+      <div class="menu-section">
+        <div class="menu-title">Legal</div>
+        <a href="/privacy.html" class="menu-link" target="_blank">Privacy Policy</a>
+        <a href="/terms.html" class="menu-link" target="_blank">Terms of Use</a>
+      </div>
     </div>
-    
-    <div class="menu-divider"></div>
-    
-    <div class="menu-section">
-      <div class="menu-title">Legal</div>
-      <a href="privacy.html" class="menu-link" target="_blank">Privacy Policy</a>
-      <a href="terms.html" class="menu-link" target="_blank">Terms of Use</a>
-    </div>
-  </div>
 
   <header>
     <div class="logo-hero">
@@ -1410,51 +1413,9 @@
     </div>
   </footer>
   <!-- FADE-IN + SMOOTH-SCROLL JS -->
-  <script>
-    // Smart download link function
-    function getAppStoreLink() {
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-      
-      // Check for iOS devices
-      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        return 'https://apps.apple.com/app/id6751612917';
-      }
-      
-      // Check for Android devices
-      if (/android/i.test(userAgent)) {
-        return 'https://play.google.com/store/apps/details?id=com.pottypalai.app';
-      }
-      
-      // Check for Windows Phone (legacy)
-      if (/windows phone/i.test(userAgent)) {
-        return 'https://play.google.com/store/apps/details?id=com.pottypalai.app';
-      }
-      
-      // Default: return both links (we'll show both)
-      return 'both';
-    }
-    
-    // Handle download button clicks
-    function handleDownloadClick(event) {
-      event.preventDefault();
-      const storeLink = getAppStoreLink();
-      
-      if (storeLink === 'both') {
-        // Show both links or default to Google Play
-        window.open('https://play.google.com/store/apps/details?id=com.pottypalai.app', '_blank');
-      } else {
-        window.open(storeLink, '_blank');
-      }
-    }
-    
-    // Fade-in animation on scroll
-    document.addEventListener('DOMContentLoaded', function () {
-      // Attach smart download links to all download buttons
-      const downloadButtons = document.querySelectorAll('.download-link');
-      downloadButtons.forEach(button => {
-        button.addEventListener('click', handleDownloadClick);
-      });
-      
+    <script>
+      // Fade-in animation on scroll
+      document.addEventListener('DOMContentLoaded', function () {
       const fadeEls = document.querySelectorAll('.fade-in');
       // Remove decorative images entirely (keep only header logo)
       document.querySelectorAll('.story-image, .features-illustration').forEach(el => el.remove());
@@ -1503,50 +1464,6 @@
             toggle.textContent = '−';
           }
         });
-      });
-
-      // Hamburger Menu functionality
-      const hamburgerMenu = document.getElementById('hamburgerMenu');
-      const mobileMenu = document.getElementById('mobileMenu');
-      const menuLinks = document.querySelectorAll('.menu-link');
-
-      hamburgerMenu.addEventListener('click', () => {
-        hamburgerMenu.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-        
-        // Prevent body scroll when menu is open
-        if (mobileMenu.classList.contains('active')) {
-          document.body.style.overflow = 'hidden';
-        } else {
-          document.body.style.overflow = '';
-        }
-      });
-
-      // Close menu when clicking on menu links
-      menuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          hamburgerMenu.classList.remove('active');
-          mobileMenu.classList.remove('active');
-          document.body.style.overflow = '';
-        });
-      });
-
-      // Close menu when clicking outside
-      mobileMenu.addEventListener('click', (e) => {
-        if (e.target === mobileMenu) {
-          hamburgerMenu.classList.remove('active');
-          mobileMenu.classList.remove('active');
-          document.body.style.overflow = '';
-        }
-      });
-
-      // Close menu on escape key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-          hamburgerMenu.classList.remove('active');
-          mobileMenu.classList.remove('active');
-          document.body.style.overflow = '';
-        }
       });
     });
   </script>
