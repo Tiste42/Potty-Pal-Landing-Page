@@ -600,6 +600,21 @@
         </div>
       </a>
 
+      <a href="potty-training-accidents-in-public.html" class="post-card">
+        <img src="https://res.cloudinary.com/dimqqmfx6/image/upload/v1762490878/ideogram_generated_3632_1762490878_ocn9qr.png" alt="Public Potty Accidents" class="post-card-image">
+        <div class="post-card-content">
+          <div class="post-card-categories">
+            <span class="post-card-category">Common Problems</span>
+          </div>
+          <h2>My Kid Just Crapped in Public—Now What? A Survival Guide</h2>
+          <p class="post-card-excerpt">Panic-free guide to handling potty accidents in public. Learn cleanup strategies, what to pack, and how to stay calm when your kid has an accident at the store.</p>
+          <div class="post-card-meta">
+            <span class="post-card-date">November 6, 2025</span>
+            <span class="post-card-read-time">8 min read</span>
+          </div>
+        </div>
+      </a>
+
       <a href="potty-training-regression-bounce-back.html" class="post-card">
         <img src="../images/blog/potty-training-regression.png" alt="Potty Training Regression" class="post-card-image">
         <div class="post-card-content">
@@ -732,6 +747,16 @@
         imageAlt: "Potty Training Regression at Preschool"
       },
       {
+        title: "My Kid Just Crapped in Public—Now What? A Survival Guide",
+        slug: "potty-training-accidents-in-public",
+        excerpt: "Panic-free guide to handling potty accidents in public. Learn cleanup strategies, what to pack, and how to stay calm when your kid has an accident at the store.",
+        date: "2025-11-06",
+        category: "common-problems",
+        categoryName: "Common Problems",
+        image: "https://res.cloudinary.com/dimqqmfx6/image/upload/v1762490878/ideogram_generated_3632_1762490878_ocn9qr.png",
+        imageAlt: "Frazzled parent discovering toddler's potty accident in grocery store aisle, showing empathetic response to common potty training challenge"
+      },
+      {
         title: "Potty Training Regression: What Causes It and How to Bounce Back",
         slug: "potty-training-regression-bounce-back",
         excerpt: "Potty training regression is normal. Learn what triggers setbacks, why they happen, and proven strategies to help your child bounce back without shame.",
@@ -835,22 +860,25 @@
       grid.style.display = 'grid';
       noResults.style.display = 'none';
       
-      grid.innerHTML = posts.map(post => `
-        <a href="${post.slug}.html" class="post-card">
-          <img src="../images/blog/${post.image}" alt="${post.imageAlt}" class="post-card-image" loading="lazy">
-          <div class="post-card-content">
-            <div class="post-card-categories">
-              <a href="category/${post.category}.html" class="post-card-category" onclick="event.stopPropagation();">${post.categoryName}</a>
+      grid.innerHTML = posts.map(post => {
+        const imageSrc = post.image.startsWith('http') ? post.image : `../images/blog/${post.image}`;
+        return `
+          <a href="${post.slug}.html" class="post-card">
+            <img src="${imageSrc}" alt="${post.imageAlt}" class="post-card-image" loading="lazy">
+            <div class="post-card-content">
+              <div class="post-card-categories">
+                <a href="category/${post.category}.html" class="post-card-category" onclick="event.stopPropagation();">${post.categoryName}</a>
+              </div>
+              <h2>${post.title}</h2>
+              <p class="post-card-excerpt">${post.excerpt}</p>
+              <div class="post-card-meta">
+                <span class="post-card-date">${formatDate(post.date)}</span>
+                <span class="post-card-read-time">${calculateReadTime(post.excerpt)}</span>
+              </div>
             </div>
-            <h2>${post.title}</h2>
-            <p class="post-card-excerpt">${post.excerpt}</p>
-            <div class="post-card-meta">
-              <span class="post-card-date">${formatDate(post.date)}</span>
-              <span class="post-card-read-time">${calculateReadTime(post.excerpt)}</span>
-            </div>
-          </div>
-        </a>
-      `).join('');
+          </a>
+        `;
+      }).join('');
     }
 
     // Search functionality
