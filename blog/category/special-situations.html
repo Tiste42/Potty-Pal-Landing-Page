@@ -456,6 +456,16 @@
     // Blog posts data
     const blogPosts = [
       {
+        title: "Potty Training on a Plane: Your Survival Guide to Flying",
+        slug: "potty-training-airplane-flying",
+        excerpt: "Complete guide to flying with a potty trained toddler. Learn bathroom strategies, packing essentials, and how to prevent accidents and regression during air travel.",
+        date: "2025-11-06",
+        category: "special-situations",
+        categoryName: "Special Situations",
+        image: "https://res.cloudinary.com/dimqqmfx6/image/upload/v1762494785/ideogram_generated_3632_1762494785_tsrast.png",
+        imageAlt: "Parent helping toddler use portable potty seat in airplane lavatory, showing calm support during air travel potty training"
+      },
+      {
         title: "Potty Training in Small Spaces: 5 Strategies When You Can't Go Bottomless",
         slug: "potty-training-small-spaces",
         excerpt: "Potty train without the bottomless method. 5 practical strategies for apartments, campers, and small homes—real solutions for space-constrained parents.",
@@ -486,22 +496,25 @@
     // Render posts
     function renderPosts(posts) {
       const grid = document.getElementById('postsGrid');
-      grid.innerHTML = posts.map(post => `
-        <a href="../${post.slug}.html" class="post-card">
-          <img src="../../images/blog/${post.image}" alt="${post.imageAlt}" class="post-card-image" loading="lazy">
-          <div class="post-card-content">
-            <div class="post-card-categories">
-              <span class="post-card-category">${post.categoryName}</span>
+      grid.innerHTML = posts.map(post => {
+        const imageSrc = post.image.startsWith('http') ? post.image : `../../images/blog/${post.image}`;
+        return `
+          <a href="../${post.slug}.html" class="post-card">
+            <img src="${imageSrc}" alt="${post.imageAlt}" class="post-card-image" loading="lazy">
+            <div class="post-card-content">
+              <div class="post-card-categories">
+                <span class="post-card-category">${post.categoryName}</span>
+              </div>
+              <h2>${post.title}</h2>
+              <p class="post-card-excerpt">${post.excerpt}</p>
+              <div class="post-card-meta">
+                <span class="post-card-date">${formatDate(post.date)}</span>
+                <span class="post-card-read-time">${calculateReadTime(post.excerpt)}</span>
+              </div>
             </div>
-            <h2>${post.title}</h2>
-            <p class="post-card-excerpt">${post.excerpt}</p>
-            <div class="post-card-meta">
-              <span class="post-card-date">${formatDate(post.date)}</span>
-              <span class="post-card-read-time">${calculateReadTime(post.excerpt)}</span>
-            </div>
-          </div>
-        </a>
-      `).join('');
+          </a>
+        `;
+      }).join('');
     }
 
     // Initialize

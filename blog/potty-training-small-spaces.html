@@ -674,14 +674,27 @@
   <script>
     // Related posts data - update this section with related posts from the same category
     const relatedPosts = [
-      // Example structure:
-      // {
-      //   title: "Related Post Title",
-      //   slug: "related-post-slug",
-      //   date: "2025-01-10",
-      //   image: "related-image.jpg",  // Just filename - supports .jpg, .png, .webp, etc.
-      //   imageAlt: "Alt text for related post image"
-      // }
+      {
+        title: "Potty Training on a Plane: Your Survival Guide to Flying",
+        slug: "potty-training-airplane-flying",
+        date: "2025-11-06",
+        image: "https://res.cloudinary.com/dimqqmfx6/image/upload/v1762494785/ideogram_generated_3632_1762494785_tsrast.png",
+        imageAlt: "Parent helping toddler use portable potty seat in airplane lavatory"
+      },
+      {
+        title: "My Kid Just Crapped in Public—Now What? A Survival Guide",
+        slug: "potty-training-accidents-in-public",
+        date: "2025-11-06",
+        image: "https://res.cloudinary.com/dimqqmfx6/image/upload/v1762490878/ideogram_generated_3632_1762490878_ocn9qr.png",
+        imageAlt: "Frazzled parent discovering toddler's potty accident in grocery store aisle"
+      },
+      {
+        title: "Potty Training Regression at Preschool: Why It Happens & How to Handle It",
+        slug: "potty-training-regression-preschool",
+        date: "2025-11-06",
+        image: "potty-training-regression-preschool.png",
+        imageAlt: "Toddler at preschool bathroom with supportive caregiver"
+      }
     ];
 
     // Format date
@@ -699,15 +712,18 @@
         return;
       }
       
-      grid.innerHTML = relatedPosts.slice(0, 3).map(post => `
-        <a href="${post.slug}.html" class="related-post-card">
-          <img src="../images/blog/${post.image}" alt="${post.imageAlt}" class="related-post-image" loading="lazy">
-          <div class="related-post-content">
-            <h3>${post.title}</h3>
-            <p class="related-post-date">${formatDate(post.date)}</p>
-          </div>
-        </a>
-      `).join('');
+      grid.innerHTML = relatedPosts.slice(0, 3).map(post => {
+        const imageSrc = post.image.startsWith('http') ? post.image : `../images/blog/${post.image}`;
+        return `
+          <a href="${post.slug}.html" class="related-post-card">
+            <img src="${imageSrc}" alt="${post.imageAlt}" class="related-post-image" loading="lazy">
+            <div class="related-post-content">
+              <h3>${post.title}</h3>
+              <p class="related-post-date">${formatDate(post.date)}</p>
+            </div>
+          </a>
+        `;
+      }).join('');
     }
 
     // Smart download link function
