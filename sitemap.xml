@@ -23,12 +23,18 @@
   <!-- Blog Index -->
   <url>
     <loc>https://pottypalai.com/blog/</loc>
-    <lastmod>2025-11-05</lastmod>
+    <lastmod>2026-01-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- Blog Posts -->
+  <url>
+    <loc>https://pottypalai.com/blog/potty-training-new-years-resolution</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>https://pottypalai.com/blog/potty-training-regression-preschool</loc>
     <lastmod>2025-11-06</lastmod>
@@ -99,7 +105,7 @@
   </url>
   <url>
     <loc>https://pottypalai.com/blog/category/readiness-starting-out.html</loc>
-    <lastmod>2025-11-05</lastmod>
+    <lastmod>2026-01-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
