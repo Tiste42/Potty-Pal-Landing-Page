@@ -11,6 +11,23 @@
 
     gtag('config', 'G-VV8TGNN2S1');
   </script>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '907678131685393');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=907678131685393&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
   <meta charset="UTF-8" />
   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
   <title>Potty Pal AI – Smart Potty Training</title>
@@ -917,6 +934,72 @@
       }
     }
 
+    /* STICKY MOBILE DOWNLOAD BAR */
+    .mobile-download-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1001;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 12px 16px;
+      padding-bottom: calc(12px + env(safe-area-inset-bottom));
+      box-shadow: 0 -4px 20px rgba(26, 83, 92, 0.15);
+      border-top: 2px solid var(--accent);
+    }
+    
+    .mobile-download-bar .download-bar-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background: linear-gradient(90deg, #4ecdc4 65%, #1a535c 110%);
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: var(--radius);
+      padding: 14px 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(78, 205, 196, 0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+    }
+    
+    .mobile-download-bar .download-bar-btn:hover,
+    .mobile-download-bar .download-bar-btn:active {
+      transform: scale(1.02);
+      box-shadow: 0 6px 24px rgba(78, 205, 196, 0.4);
+    }
+    
+    .mobile-download-bar .download-bar-btn svg {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+    
+    /* Show only on mobile */
+    @media (max-width: 768px) {
+      .mobile-download-bar {
+        display: block;
+      }
+      
+      /* Add padding to body so content isn't hidden behind sticky bar */
+      body {
+        padding-bottom: 80px;
+      }
+      
+      footer {
+        margin-bottom: 0;
+        padding-bottom: calc(20px + env(safe-area-inset-bottom));
+      }
+    }
+
     /* HAMBURGER MENU STYLES */
     .hamburger-menu {
       position: fixed;
@@ -1395,6 +1478,16 @@
       </div>
     </section>
   
+  <!-- STICKY MOBILE DOWNLOAD BAR -->
+  <div class="mobile-download-bar">
+    <a href="javascript:void(0)" class="download-bar-btn download-link">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M13 5v6h1.17L12 13.17 9.83 11H11V5h2m2-2H9v6H5l7 7 7-7h-4V3zm4 15H5v2h14v-2z"/>
+      </svg>
+      Download the App Free
+    </a>
+  </div>
+
   <!-- FOOTER -->
   <footer>
     <div>
@@ -1444,6 +1537,26 @@
     function handleDownloadClick(event) {
       event.preventDefault();
       const storeLink = getAppStoreLink();
+      
+      // Determine which store for tracking
+      const isIOS = storeLink.includes('apps.apple.com');
+      const storeName = isIOS ? 'App Store' : 'Google Play';
+      
+      // Track with Facebook Pixel
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'Lead', {
+          content_name: 'App Download Click',
+          content_category: storeName
+        });
+      }
+      
+      // Track with Google Analytics
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'download_click', {
+          'event_category': 'App Download',
+          'event_label': storeName
+        });
+      }
       
       if (storeLink === 'both') {
         // Show both links or default to Google Play
