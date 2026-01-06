@@ -10,6 +10,19 @@
 
     gtag('config', 'G-VV8TGNN2S1');
   </script>
+  <!-- GA Event Tracking for Download Buttons -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.download-link').forEach(function(link) {
+        link.addEventListener('click', function() {
+          gtag('event', 'app_download_click', {
+            'event_category': 'engagement',
+            'event_label': this.href
+          });
+        });
+      });
+    });
+  </script>
   <meta charset="UTF-8" />
   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
   <meta name="description" content="Terms and Conditions for Potty Pal AI — rules for using the service." />
