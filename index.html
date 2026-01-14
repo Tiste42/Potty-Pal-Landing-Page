@@ -212,15 +212,17 @@
     .logo-hero:active {
       transform: scale(0.98);
     }
-    .logo-hero img,
     .logo-hero picture {
-      width: 99.5%; height: auto; object-fit: contain; display: block;
-      border-radius: 50%;
+      display: block;
+      width: 99.5%;
+      height: auto;
     }
-    .logo-hero picture {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .logo-hero img {
+      width: 100%; 
+      height: auto; 
+      object-fit: contain; 
+      display: block;
+      border-radius: 50%;
     }
     .logo-hero.has-external-logo { background-image: url('logo.png'); }
     .logo-hero.has-external-logo img { display: none; }
