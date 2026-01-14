@@ -212,13 +212,8 @@
     .logo-hero:active {
       transform: scale(0.98);
     }
-    .logo-hero picture {
-      display: block;
-      width: 99.5%;
-      height: auto;
-    }
     .logo-hero img {
-      width: 100%; 
+      width: 99.5%; 
       height: auto; 
       object-fit: contain; 
       display: block;
@@ -1091,9 +1086,12 @@
       z-index: 999;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
-      gap: 2rem;
+      gap: 1.5rem;
+      padding: 2rem 1rem;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
       opacity: 0;
       visibility: hidden;
       transition: all 0.3s ease;
@@ -1271,10 +1269,10 @@
         <a href="#how">How It Works</a>
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
-        <a href="products.html">Essentials</a>
+        <a href="products.html">Maybe That's Fine</a>
+        <a href="blog/index.html">Blog</a>
         <a href="privacy.html" target="_blank">Privacy</a>
         <a href="terms.html" target="_blank">Terms</a>
-        <a href="blog/index.html">Blog</a>
         <a href="javascript:void(0)" class="download-link">Download App</a>
       </div>
     </div>
@@ -1291,12 +1289,12 @@
   <div class="mobile-menu" id="mobileMenu">
     <div class="menu-section">
       <div class="menu-title">Navigate</div>
-      <a href="blog/index.html" class="menu-link">Potty Pal Blog</a>
-      <a href="products.html" class="menu-link">Essentials</a>
       <a href="#how" class="menu-link">How It Works</a>
       <a href="#pricing" class="menu-link">Pricing</a>
       <a href="#comparison" class="menu-link">Compare Plans</a>
       <a href="#faq" class="menu-link">FAQ</a>
+      <a href="products.html" class="menu-link">Maybe That's Fine</a>
+      <a href="blog/index.html" class="menu-link">Potty Pal Blog</a>
     </div>
     
     <div class="menu-divider"></div>
@@ -1316,10 +1314,7 @@
 
   <header>
     <div class="logo-hero download-link" role="button" tabindex="0" aria-label="Download Potty Pal AI app">
-      <picture>
-        <source srcset="images/blog/transparentpottypaldownloadfreelogo.webp" type="image/webp">
-        <img src="images/blog/transparentpottypaldownloadfreelogo.png" alt="Potty Pal AI - Download Free" class="hero-logo">
-      </picture>
+      <img src="images/blog/transparentpottypaldownloadfreelogo.png" alt="Potty Pal AI - Download Free" class="hero-logo">
       </div>
     <h1 class="hero-main">The personalized potty training expert in your pocket</h1>
     <h2 class="hero-tagline">Everything you need. Nothing you don't.</h2>
@@ -1576,7 +1571,7 @@
     </div>
     <div class="footer-links">
       <a href="blog/index.html">Blog</a>
-      <a href="products.html">Essentials</a>
+      <a href="products.html">Maybe That's Fine</a>
       <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>
       <a href="terms.html" target="_blank" rel="noopener">Terms of Use</a>
       <a href="delete.html" target="_blank" rel="noopener">Data Deletion</a>
