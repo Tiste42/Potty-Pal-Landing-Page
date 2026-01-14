@@ -212,9 +212,15 @@
     .logo-hero:active {
       transform: scale(0.98);
     }
-    .logo-hero img {
-      width: 98%; height: auto; object-fit: contain; display: block;
+    .logo-hero img,
+    .logo-hero picture {
+      width: 99.5%; height: auto; object-fit: contain; display: block;
       border-radius: 50%;
+    }
+    .logo-hero picture {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .logo-hero.has-external-logo { background-image: url('logo.png'); }
     .logo-hero.has-external-logo img { display: none; }
@@ -1308,7 +1314,10 @@
 
   <header>
     <div class="logo-hero download-link" role="button" tabindex="0" aria-label="Download Potty Pal AI app">
-      <img src="images/blog/transparentpottypaldownloadfreelogo.png" alt="Potty Pal AI - Download Free" class="hero-logo">
+      <picture>
+        <source srcset="images/blog/transparentpottypaldownloadfreelogo.webp" type="image/webp">
+        <img src="images/blog/transparentpottypaldownloadfreelogo.png" alt="Potty Pal AI - Download Free" class="hero-logo">
+      </picture>
       </div>
     <h1 class="hero-main">The personalized potty training expert in your pocket</h1>
     <h2 class="hero-tagline">Everything you need. Nothing you don't.</h2>
