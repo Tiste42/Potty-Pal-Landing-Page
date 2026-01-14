@@ -97,9 +97,50 @@
     .page-intro {
       font-size: 1.15rem;
       color: #444;
-      margin: 0 0 2.5rem 0;
+      margin: 0 0 2rem 0;
       max-width: 800px;
       line-height: 1.6;
+    }
+    /* Category Navigation */
+    .category-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin: 0 0 2.5rem 0;
+      padding: 1.5rem 0;
+    }
+    .category-nav-btn {
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      background: #eafaf8;
+      color: var(--accent2);
+      border: 1.5px solid #d6f5ef;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 8px rgba(78,205,196,0.08);
+      white-space: nowrap;
+    }
+    .category-nav-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(78,205,196,0.2);
+    }
+    @media (max-width: 768px) {
+      .category-nav {
+        gap: 0.5rem;
+        padding: 1rem 0;
+      }
+      .category-nav-btn {
+        font-size: 0.9rem;
+        padding: 0.55rem 1rem;
+      }
     }
     
     /* Category Sections */
@@ -327,9 +368,12 @@
       z-index: 999;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
-      gap: 2rem;
+      gap: 1.5rem;
+      padding: 2rem 1rem;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
       opacity: 0;
       visibility: hidden;
       transition: all 0.3s ease;
@@ -524,8 +568,17 @@
     <h1>Potty Training Essentials</h1>
     <p class="page-intro">While Potty Pal AI is your expert in your pocket, we know that some physical products can make the potty training journey easier. These are products we think are helpful and genuinely useful for parents going through potty training. We've curated this list based on what works well and what many families find useful.</p>
 
+    <!-- Category Navigation -->
+    <nav class="category-nav" aria-label="Product categories">
+      <a href="#essentials" class="category-nav-btn">The Essentials</a>
+      <a href="#cleanup-hygiene" class="category-nav-btn">Cleanup & Hygiene</a>
+      <a href="#on-the-go" class="category-nav-btn">On-The-Go</a>
+      <a href="#motivation-tools" class="category-nav-btn">Motivation & Tools</a>
+      <a href="#books" class="category-nav-btn">Books</a>
+    </nav>
+
     <!-- The Essentials -->
-    <section class="category-section">
+    <section id="essentials" class="category-section">
       <h2 class="category-title">The Essentials</h2>
       <p class="category-intro">The foundational products every potty training family needs—from potty chairs to training pants and mattress protection.</p>
       <div class="category-shop-all">
@@ -572,7 +625,7 @@
     </section>
 
     <!-- Cleanup & Hygiene -->
-    <section class="category-section">
+    <section id="cleanup-hygiene" class="category-section">
       <h2 class="category-title">Cleanup & Hygiene</h2>
       <p class="category-intro">Essential products for keeping things clean and hygienic during the potty training process.</p>
       <div class="category-shop-all">
@@ -607,7 +660,7 @@
     </section>
 
     <!-- On-The-Go -->
-    <section class="category-section">
+    <section id="on-the-go" class="category-section">
       <h2 class="category-title">On-The-Go</h2>
       <p class="category-intro">Portable solutions for potty training when you're away from home—perfect for travel, errands, and adventures.</p>
       <div class="category-shop-all">
@@ -642,7 +695,7 @@
     </section>
 
     <!-- Motivation & Tools -->
-    <section class="category-section">
+    <section id="motivation-tools" class="category-section">
       <h2 class="category-title">Motivation & Tools</h2>
       <p class="category-intro">Helpful tools and motivators to encourage your child during the potty training process.</p>
       <div class="category-shop-all">
@@ -665,7 +718,7 @@
     </section>
 
     <!-- Books for Parents & Kids -->
-    <section class="category-section">
+    <section id="books" class="category-section">
       <h2 class="category-title">Books for Parents & Kids</h2>
       <div class="books-intro">
         <p>With Potty Pal AI, you don't need a big book, but if you're someone who just needs to hold one, these are some of our recommendations. These books can be helpful companions alongside your AI expert.</p>
