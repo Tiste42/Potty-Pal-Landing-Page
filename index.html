@@ -11,19 +11,6 @@
 
     gtag('config', 'G-VV8TGNN2S1');
   </script>
-  <!-- GA Event Tracking for Download Buttons -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      document.querySelectorAll('.download-link').forEach(function(link) {
-        link.addEventListener('click', function() {
-          gtag('event', 'app_download_click', {
-            'event_category': 'engagement',
-            'event_label': this.href
-          });
-        });
-      });
-    });
-  </script>
   <!-- Meta Pixel Code -->
   <script>
   !function(f,b,e,v,n,t,s)
@@ -44,6 +31,18 @@
   <meta charset="UTF-8" />
   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
   <title>Potty Pal AI – Smart Potty Training</title>
+  <meta name="description" content="Get personalized potty training guidance powered by AI. Expert-backed plans tailored to your child's unique needs. Track progress and get instant answers anytime." />
+  <link rel="canonical" href="https://pottypalai.com/" />
+  
+  <!-- Resource Hints for Performance -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://www.google-analytics.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://connect.facebook.net" />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link rel="dns-prefetch" href="https://connect.facebook.net" />
+  
   <!-- Google Fonts: Quicksand & Fredoka -->
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Fredoka:wght@700&display=swap" rel="stylesheet">
   <style>
@@ -1199,6 +1198,44 @@
       }
     }
   </style>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Potty Pal AI",
+    "url": "https://pottypalai.com",
+    "logo": "https://pottypalai.com/images/pottypallogolargetransparent.png",
+    "description": "AI-powered potty training guidance personalized for your child. Expert-backed plans and real-time support.",
+    "sameAs": [],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "support@pottypalai.com",
+      "contactType": "Customer Support"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Potty Pal AI",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "iOS, Android",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8"
+    },
+    "description": "Get personalized potty training guidance powered by AI. Expert-backed plans tailored to your child's unique needs.",
+    "url": "https://pottypalai.com"
+  }
+  </script>
 </head>
 <body>
   <!-- DESKTOP NAVIGATION -->
@@ -1546,37 +1583,51 @@
       return 'both';
     }
     
-    // Handle download button clicks
+    // Handle download button clicks with proper tracking for mobile and desktop
     function handleDownloadClick(event) {
       event.preventDefault();
+      event.stopPropagation();
+      
       const storeLink = getAppStoreLink();
       
       // Determine which store for tracking
       const isIOS = storeLink.includes('apps.apple.com');
       const storeName = isIOS ? 'App Store' : 'Google Play';
+      const finalUrl = storeLink === 'both' ? 'https://play.google.com/store/apps/details?id=com.pottypalai.app' : storeLink;
       
-      // Track with Facebook Pixel
+      // Track with Facebook Pixel (must fire before navigation, especially on mobile)
       if (typeof fbq !== 'undefined') {
-        fbq('track', 'Lead', {
-          content_name: 'App Download Click',
-          content_category: storeName
-        });
+        try {
+          fbq('track', 'Lead', {
+            content_name: 'App Download Click',
+            content_category: storeName,
+            content_ids: [storeName],
+            value: 0,
+            currency: 'USD'
+          });
+        } catch (e) {
+          console.warn('Facebook Pixel tracking error:', e);
+        }
       }
       
       // Track with Google Analytics
       if (typeof gtag !== 'undefined') {
-        gtag('event', 'download_click', {
-          'event_category': 'App Download',
-          'event_label': storeName
-        });
+        try {
+          gtag('event', 'download_click', {
+            'event_category': 'App Download',
+            'event_label': storeName,
+            'value': 0
+          });
+        } catch (e) {
+          console.warn('Google Analytics tracking error:', e);
+        }
       }
       
-      if (storeLink === 'both') {
-        // Show both links or default to Google Play
-        window.open('https://play.google.com/store/apps/details?id=com.pottypalai.app', '_blank');
-      } else {
-        window.open(storeLink, '_blank');
-      }
+      // Small delay to ensure tracking fires before navigation (critical for mobile)
+      // Mobile browsers may navigate too quickly, causing tracking to be lost
+      setTimeout(function() {
+        window.open(finalUrl, '_blank', 'noopener,noreferrer');
+      }, 150);
     }
     
     // Fade-in animation on scroll

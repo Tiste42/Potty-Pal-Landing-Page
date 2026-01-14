@@ -10,19 +10,23 @@
 
     gtag('config', 'G-VV8TGNN2S1');
   </script>
-  <!-- GA Event Tracking for Download Buttons -->
+  <!-- Meta Pixel Code -->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      document.querySelectorAll('.download-link').forEach(function(link) {
-        link.addEventListener('click', function() {
-          gtag('event', 'app_download_click', {
-            'event_category': 'engagement',
-            'event_label': this.href
-          });
-        });
-      });
-    });
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '907678131685393');
+  fbq('track', 'PageView');
   </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=907678131685393&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
   <meta charset="UTF-8" />
   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
   <meta name="description" content="Potty Pal AI Blog - Expert potty training tips, solutions to common problems, and guidance for parents. Learn from our comprehensive training resources." />
@@ -1115,17 +1119,51 @@
         return 'both';
       }
       
-      // Handle download button clicks
+      // Handle download button clicks with proper tracking for mobile and desktop
       function handleDownloadClick(event) {
         event.preventDefault();
+        event.stopPropagation();
+        
         const storeLink = getAppStoreLink();
         
-        if (storeLink === 'both') {
-          // Show both links or default to Google Play
-          window.open('https://play.google.com/store/apps/details?id=com.pottypalai.app', '_blank');
-        } else {
-          window.open(storeLink, '_blank');
+        // Determine which store for tracking
+        const isIOS = storeLink.includes('apps.apple.com');
+        const storeName = isIOS ? 'App Store' : 'Google Play';
+        const finalUrl = storeLink === 'both' ? 'https://play.google.com/store/apps/details?id=com.pottypalai.app' : storeLink;
+        
+        // Track with Facebook Pixel (must fire before navigation, especially on mobile)
+        if (typeof fbq !== 'undefined') {
+          try {
+            fbq('track', 'Lead', {
+              content_name: 'App Download Click',
+              content_category: storeName,
+              content_ids: [storeName],
+              value: 0,
+              currency: 'USD'
+            });
+          } catch (e) {
+            console.warn('Facebook Pixel tracking error:', e);
+          }
         }
+        
+        // Track with Google Analytics
+        if (typeof gtag !== 'undefined') {
+          try {
+            gtag('event', 'download_click', {
+              'event_category': 'App Download',
+              'event_label': storeName,
+              'value': 0
+            });
+          } catch (e) {
+            console.warn('Google Analytics tracking error:', e);
+          }
+        }
+        
+        // Small delay to ensure tracking fires before navigation (critical for mobile)
+        // Mobile browsers may navigate too quickly, causing tracking to be lost
+        setTimeout(function() {
+          window.open(finalUrl, '_blank', 'noopener,noreferrer');
+        }, 150);
       }
       
       // Attach smart download links to all download buttons

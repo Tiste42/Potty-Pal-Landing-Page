@@ -10,53 +10,119 @@
 
     gtag('config', 'G-VV8TGNN2S1');
   </script>
-  <!-- GA Event Tracking for Download Buttons -->
+  <!-- Meta Pixel Code -->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      document.querySelectorAll('.download-link').forEach(function(link) {
-        link.addEventListener('click', function() {
-          gtag('event', 'app_download_click', {
-            'event_category': 'engagement',
-            'event_label': this.href
-          });
-        });
-      });
-    });
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '907678131685393');
+  fbq('track', 'PageView');
   </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=907678131685393&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
   <meta charset="UTF-8" />
   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
-  <!-- SEO Meta Tags -->
+  
+  <!-- ============================================
+       SEO META TAGS - REQUIRED FOR ALL POSTS
+       See BLOG_POST_SEO_CHECKLIST.md for details
+       ============================================ -->
+  
+  <!-- TITLE TAG: 50-60 characters total (including "| Potty Pal AI")
+       - Include primary keyword near the beginning
+       - Make it compelling and click-worthy
+       - Example: "Is Your Toddler Ready? 8 Signs of Potty Training Readiness | Potty Pal AI" -->
   <title>POST TITLE HERE - 50-60 Characters | Potty Pal AI</title>
+  
+  <!-- META DESCRIPTION: 150-160 characters
+       - Include primary keyword naturally
+       - Clear value proposition (what will reader learn?)
+       - Compelling reason to click
+       - Example: "Not sure if your toddler is ready for potty training? Learn 8 clear signs of readiness and when to start—plus what to avoid." -->
   <meta name="description" content="Meta description here - 150-160 characters including keywords and value proposition." />
+  
+  <!-- KEYWORDS: 5-10 relevant keywords, comma-separated
+       - Primary keyword first, then related terms
+       - Natural keyword variations
+       - Example: "potty training readiness, signs toddler ready potty training, when to start potty training" -->
   <meta name="keywords" content="potty training, toddler, parenting, potty training tips" />
   
-  <!-- Open Graph Tags -->
+  <!-- ============================================
+       OPEN GRAPH TAGS - FOR SOCIAL SHARING
+       ============================================ -->
+  
+  <!-- OG TITLE: Same as title tag (without "| Potty Pal AI" is fine) -->
   <meta property="og:title" content="POST TITLE HERE | Potty Pal AI" />
+  
+  <!-- OG DESCRIPTION: Same as meta description -->
   <meta property="og:description" content="Meta description here - 150-160 characters including keywords and value proposition." />
+  
+  <!-- OG IMAGE: Featured image URL (1200x630px recommended)
+       - Must be full URL: https://pottypalai.com/images/blog/filename.png
+       - Use WebP format if available
+       - Example: "https://pottypalai.com/images/blog/potty-training-readiness-8-signs.png" -->
   <meta property="og:image" content="https://pottypalai.com/images/blog/FEATURED-IMAGE-URL.jpg" />
+  
+  <!-- OG TYPE: Always "article" for blog posts -->
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://pottypalai.com/blog/post-slug.html" />
+  
+  <!-- OG URL: Full canonical URL (NO .html extension!)
+       - Format: https://pottypalai.com/blog/post-slug
+       - Must match canonical URL exactly
+       - Example: "https://pottypalai.com/blog/potty-training-readiness-8-signs" -->
+  <meta property="og:url" content="https://pottypalai.com/blog/post-slug" />
+  
+  <!-- Note: URL should NOT have .html extension - server serves pages without it -->
+  
+  <!-- OG SITE NAME: Always "Potty Pal AI" -->
   <meta property="og:site_name" content="Potty Pal AI" />
   
-  <!-- Twitter Card Tags -->
+  <!-- ============================================
+       TWITTER CARD TAGS - FOR TWITTER SHARING
+       ============================================ -->
+  
+  <!-- TWITTER CARD: Always "summary_large_image" for blog posts -->
   <meta name="twitter:card" content="summary_large_image" />
+  
+  <!-- TWITTER TITLE: Same as og:title -->
   <meta name="twitter:title" content="POST TITLE HERE | Potty Pal AI" />
+  
+  <!-- TWITTER DESCRIPTION: Same as og:description -->
   <meta name="twitter:description" content="Meta description here - 150-160 characters including keywords and value proposition." />
+  
+  <!-- TWITTER IMAGE: Same as og:image -->
   <meta name="twitter:image" content="https://pottypalai.com/images/blog/FEATURED-IMAGE-URL.jpg" />
   
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://pottypalai.com/blog/post-slug.html" />
+  <!-- ============================================
+       CANONICAL URL - PREVENTS DUPLICATE CONTENT
+       ============================================ -->
   
-  <!-- Article Schema JSON-LD -->
+  <!-- CANONICAL: Full URL without .html extension
+       - Must match og:url exactly
+       - Format: https://pottypalai.com/blog/post-slug
+       - Example: "https://pottypalai.com/blog/potty-training-readiness-8-signs" -->
+  <link rel="canonical" href="https://pottypalai.com/blog/post-slug" />
+  
+  <!-- ============================================
+       STRUCTURED DATA (JSON-LD) - FOR RICH SNIPPETS
+       See https://schema.org/Article for details
+       ============================================ -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "POST TITLE HERE",
-    "description": "Meta description here - 150-160 characters including keywords and value proposition.",
-    "image": "https://pottypalai.com/images/blog/FEATURED-IMAGE-URL.jpg",
-    "datePublished": "2025-01-15T00:00:00+00:00",
-    "dateModified": "2025-01-15T00:00:00+00:00",
+    "headline": "POST TITLE HERE",  <!-- Main title without "| Potty Pal AI" -->
+    "description": "Meta description here - 150-160 characters including keywords and value proposition.",  <!-- Same as meta description -->
+    "image": "https://pottypalai.com/images/blog/FEATURED-IMAGE-URL.jpg",  <!-- Full URL to featured image -->
+    "datePublished": "2025-01-15T00:00:00+00:00",  <!-- ISO 8601 format: YYYY-MM-DDTHH:MM:SS+00:00 -->
+    "dateModified": "2025-01-15T00:00:00+00:00",  <!-- Same as datePublished (or update when editing) -->
     "author": {
       "@type": "Organization",
       "name": "Potty Pal AI"
@@ -69,10 +135,10 @@
         "url": "https://pottypalai.com/images/pottypallogolargetransparent.png"
       }
     },
-    "articleSection": "CATEGORY NAME HERE",
+    "articleSection": "CATEGORY NAME HERE",  <!-- e.g., "Readiness & Starting Out", "Common Problems", etc. -->
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://pottypalai.com/blog/post-slug.html"
+      "@id": "https://pottypalai.com/blog/post-slug"  <!-- Full URL matching canonical (NO .html) -->
     }
   }
   </script>
@@ -606,16 +672,29 @@
   </footer>
 
   <script>
-    // Related posts data - update this section with related posts from the same category
+    // ============================================
+    // RELATED POSTS - INTERNAL LINKING FOR SEO
+    // ============================================
+    // Add 2-3 related posts from the same category to improve internal linking
+    // This helps with SEO and keeps readers engaged
+    // 
+    // INSTRUCTIONS:
+    // 1. Find 2-3 related posts from the same category
+    // 2. Copy the structure below for each post
+    // 3. Fill in: title, slug (no .html), date, image filename, descriptive alt text
+    // 4. Image should be in images/blog/ directory
+    // 5. Use WebP format if available for better performance
+    //
+    // Example:
+    // {
+    //   title: "Potty Training Regression: What Causes It and How to Bounce Back",
+    //   slug: "potty-training-regression-bounce-back",  // NO .html extension!
+    //   date: "2025-11-05",  // YYYY-MM-DD format
+    //   image: "potty-training-regression.png",  // Just filename, not full path
+    //   imageAlt: "Child experiencing potty training regression with supportive parent"  // Descriptive alt text
+    // }
     const relatedPosts = [
-      // Example structure:
-      // {
-      //   title: "Related Post Title",
-      //   slug: "related-post-slug",
-      //   date: "2025-01-10",
-      //   image: "related-image.jpg",  // Just filename - supports .jpg, .png, .webp, etc.
-      //   imageAlt: "Alt text for related post image"
-      // }
+      // Add related posts here (2-3 recommended)
     ];
 
     // Format date
@@ -667,17 +746,51 @@
       return 'both';
     }
     
-    // Handle download button clicks
+    // Handle download button clicks with proper tracking for mobile and desktop
     function handleDownloadClick(event) {
       event.preventDefault();
+      event.stopPropagation();
+      
       const storeLink = getAppStoreLink();
       
-      if (storeLink === 'both') {
-        // Show both links or default to Google Play
-        window.open('https://play.google.com/store/apps/details?id=com.pottypalai.app', '_blank');
-      } else {
-        window.open(storeLink, '_blank');
+      // Determine which store for tracking
+      const isIOS = storeLink.includes('apps.apple.com');
+      const storeName = isIOS ? 'App Store' : 'Google Play';
+      const finalUrl = storeLink === 'both' ? 'https://play.google.com/store/apps/details?id=com.pottypalai.app' : storeLink;
+      
+      // Track with Facebook Pixel (must fire before navigation, especially on mobile)
+      if (typeof fbq !== 'undefined') {
+        try {
+          fbq('track', 'Lead', {
+            content_name: 'App Download Click',
+            content_category: storeName,
+            content_ids: [storeName],
+            value: 0,
+            currency: 'USD'
+          });
+        } catch (e) {
+          console.warn('Facebook Pixel tracking error:', e);
+        }
       }
+      
+      // Track with Google Analytics
+      if (typeof gtag !== 'undefined') {
+        try {
+          gtag('event', 'download_click', {
+            'event_category': 'App Download',
+            'event_label': storeName,
+            'value': 0
+          });
+        } catch (e) {
+          console.warn('Google Analytics tracking error:', e);
+        }
+      }
+      
+      // Small delay to ensure tracking fires before navigation (critical for mobile)
+      // Mobile browsers may navigate too quickly, causing tracking to be lost
+      setTimeout(function() {
+        window.open(finalUrl, '_blank', 'noopener,noreferrer');
+      }, 150);
     }
 
     // Hamburger Menu functionality
