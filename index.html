@@ -33,6 +33,20 @@
   <title>Potty Pal AI – Smart Potty Training</title>
   <meta name="description" content="Get personalized potty training guidance powered by AI. Expert-backed plans tailored to your child's unique needs. Track progress and get instant answers anytime." />
   <link rel="canonical" href="https://pottypalai.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.pottypalai.com/" />
+  <meta property="og:title" content="Potty Pal AI – Smart Potty Training" />
+  <meta property="og:description" content="Get personalized potty training guidance powered by AI. Expert-backed plans tailored to your child's unique needs. Track progress and get instant answers anytime." />
+  <meta property="og:image" content="https://www.pottypalai.com/images/blog/transparentpottypaldownloadfreelogo.png" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Potty Pal AI – Smart Potty Training" />
+  <meta name="twitter:description" content="Get personalized potty training guidance powered by AI. Expert-backed plans tailored to your child's unique needs." />
+  <meta name="twitter:image" content="https://www.pottypalai.com/images/blog/transparentpottypaldownloadfreelogo.png" />
   
   <!-- Resource Hints for Performance -->
   <link rel="preconnect" href="https://www.googletagmanager.com" />
@@ -1268,6 +1282,7 @@
       <div class="desktop-nav-links">
         <a href="#how">How It Works</a>
         <a href="#pricing">Pricing</a>
+        <a href="#comparison">Compare Plans</a>
         <a href="#faq">FAQ</a>
         <a href="products.html">Essentials</a>
         <a href="blog/index.html">Blog</a>
@@ -1612,19 +1627,8 @@
       return 'both';
     }
     
-    // Handle download button clicks with proper tracking for mobile and desktop
-    function handleDownloadClick(event) {
-      event.preventDefault();
-      event.stopPropagation();
-      
-      const storeLink = getAppStoreLink();
-      
-      // Determine which store for tracking
-      const isIOS = storeLink.includes('apps.apple.com');
-      const storeName = isIOS ? 'App Store' : 'Google Play';
-      const finalUrl = storeLink === 'both' ? 'https://play.google.com/store/apps/details?id=com.pottypalai.app' : storeLink;
-      
-      // Track with Facebook Pixel (must fire before navigation, especially on mobile)
+    // Track a store click and navigate
+    function trackAndNavigate(url, storeName) {
       if (typeof fbq !== 'undefined') {
         try {
           fbq('track', 'Lead', {
@@ -1638,8 +1642,6 @@
           console.warn('Facebook Pixel tracking error:', e);
         }
       }
-      
-      // Track with Google Analytics
       if (typeof gtag !== 'undefined') {
         try {
           gtag('event', 'download_click', {
@@ -1651,12 +1653,37 @@
           console.warn('Google Analytics tracking error:', e);
         }
       }
-      
-      // Small delay to ensure tracking fires before navigation (critical for mobile)
-      // Mobile browsers may navigate too quickly, causing tracking to be lost
       setTimeout(function() {
-        window.open(finalUrl, '_blank', 'noopener,noreferrer');
+        window.open(url, '_blank', 'noopener,noreferrer');
       }, 150);
+    }
+
+    // Show store picker modal for desktop users
+    function showStorePicker() {
+      var modal = document.getElementById('storePicker');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeStorePicker() {
+      var modal = document.getElementById('storePicker');
+      if (modal) modal.style.display = 'none';
+    }
+
+    // Handle download button clicks with proper tracking for mobile and desktop
+    function handleDownloadClick(event) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const storeLink = getAppStoreLink();
+
+      if (storeLink === 'both') {
+        // Desktop: show a store picker so neither platform is excluded
+        showStorePicker();
+        return;
+      }
+
+      const storeName = storeLink.includes('apps.apple.com') ? 'App Store' : 'Google Play';
+      trackAndNavigate(storeLink, storeName);
     }
     
     // Fade-in animation on scroll
@@ -1677,13 +1704,6 @@
       const fadeEls = document.querySelectorAll('.fade-in');
       // Remove decorative images entirely (keep only header logo)
       document.querySelectorAll('.story-image, .features-illustration').forEach(el => el.remove());
-      // If logo.png exists, add a class to swap hero image to external file
-      fetch('logo.png', { method: 'HEAD' }).then(r => {
-        if (r.ok) {
-          const hero = document.querySelector('.logo-hero');
-          if (hero) hero.classList.add('has-external-logo');
-        }
-      }).catch(() => {});
       const revealOnScroll = () => {
         let trigger = window.innerHeight * 0.92;
         fadeEls.forEach(el => {
@@ -1769,5 +1789,25 @@
       });
     });
   </script>
+
+  <!-- Store Picker Modal (shown on desktop when platform is unknown) -->
+  <div id="storePicker" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:9999;align-items:center;justify-content:center;" onclick="if(event.target===this)closeStorePicker()">
+    <div style="background:#fff;border-radius:20px;padding:36px 32px;max-width:360px;width:90%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,0.18);position:relative;">
+      <button onclick="closeStorePicker()" aria-label="Close" style="position:absolute;top:14px;right:18px;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#888;">&times;</button>
+      <div style="font-size:2.5rem;margin-bottom:8px;">🚽</div>
+      <h3 style="font-family:'Fredoka',Arial,sans-serif;color:#1A535C;margin:0 0 6px;">Download Potty Pal AI</h3>
+      <p style="color:#555;font-size:0.95rem;margin:0 0 24px;">Choose your platform:</p>
+      <a href="https://apps.apple.com/app/id6751612917" target="_blank" rel="noopener noreferrer"
+         onclick="trackAndNavigate('https://apps.apple.com/app/id6751612917','App Store');closeStorePicker();"
+         style="display:block;background:#000;color:#fff;border-radius:12px;padding:14px 0;font-weight:700;font-size:1rem;text-decoration:none;margin-bottom:12px;">
+        &#x1F34E; Download on the App Store
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.pottypalai.app" target="_blank" rel="noopener noreferrer"
+         onclick="trackAndNavigate('https://play.google.com/store/apps/details?id=com.pottypalai.app','Google Play');closeStorePicker();"
+         style="display:block;background:#4ECDC4;color:#fff;border-radius:12px;padding:14px 0;font-weight:700;font-size:1rem;text-decoration:none;">
+        &#x1F916; Get it on Google Play
+      </a>
+    </div>
+  </div>
 </body>
 </html>
