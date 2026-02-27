@@ -7,5 +7,5 @@ Allow: /images/
 
 Disallow: /delete.html
 
-Sitemap: https://pottypalai.com/sitemap.xml
+Sitemap: https://www.pottypalai.com/sitemap.xml
 
