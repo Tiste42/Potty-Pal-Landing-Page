@@ -8,4 +8,5 @@ Allow: /images/
 Disallow: /delete.html
 
 Sitemap: https://www.pottypalai.com/sitemap.xml
+LLMs: https://www.pottypalai.com/llms.txt
 

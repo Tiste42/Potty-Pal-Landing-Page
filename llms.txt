@@ -1,0 +1,37 @@
+# Potty Pal AI
+
+## About
+Potty Pal AI is a personalized potty training app for parents of toddlers. It provides AI-powered coaching, customized training plans, progress tracking, and instant expert answers to potty training questions.
+
+## Website
+https://www.pottypalai.com
+
+## App
+- iOS: https://apps.apple.com/app/id6751612917
+- Android: https://play.google.com/store/apps/details?id=com.pottypalai.app
+
+## Key Features
+- Personalized potty training plans based on your child's age, temperament, and readiness
+- AI coaching that answers potty training questions instantly
+- Progress tracking with milestone celebrations
+- Guidance for common challenges: regression, resistance, nighttime training, travel
+
+## Blog
+https://www.pottypalai.com/blog/
+The Potty Pal blog covers potty training tips, readiness signs, common problems, regression and setbacks, nighttime training, and special situations like travel and daycare.
+
+## Topics We Cover
+- When to start potty training (readiness signs)
+- Potty training methods (3-day method, gradual approach, child-led)
+- Poop withholding and constipation
+- Potty training regression and setbacks
+- Nighttime dryness and bedwetting
+- Potty training in special situations (travel, daycare, new siblings)
+- Potty training resistance and power struggles
+- Potty training rewards and motivation
+
+## Contact
+support@pottypalai.com
+
+## Disclaimer
+Educational coaching, not medical advice. Consult your pediatrician for medical concerns.
