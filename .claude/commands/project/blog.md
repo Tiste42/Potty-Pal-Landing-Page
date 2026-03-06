@@ -49,12 +49,12 @@ If $ARGUMENTS is empty or says "auto", pick the next available topic from `.clau
 
 ## PHASE 3: GENERATE HERO IMAGE
 
-9. **Generate a hero image** using Nano Banana 2 (google-genai Python library):
+9. **Generate a hero image** using Gemini (google-genai Python library):
    - First, ensure the library is installed: `pip install google-genai` (skip if already installed)
-   - Read the API key from `.claude/mcp.json` (GEMINI_API_KEY in nano-banana-pro env)
-   - Use `google.genai.Client` with model `gemini-3.1-flash-image-preview`
-   - **Prompt:** "Cheerful children's book watercolor illustration of [scene directly related to the post topic]. Bright pastel colors, soft rounded shapes, happy toddler character. Cozy, supportive atmosphere. No text, no words, no logos, no letters, no numbers."
-   - Set `config=types.GenerateContentConfig(response_modalities=["TEXT", "IMAGE"])` with `aspect_ratio="16:9"` and `image_size="2K"` in the config
+   - Ask the user for their Gemini API key if not found in environment variables (GEMINI_API_KEY)
+   - Use `google.genai.Client` with model `gemini-2.0-flash-exp-image-generation`
+   - **Prompt:** "Watercolor-style children's book illustration of [scene directly related to the post topic]. Warm muted earth tones — soft browns, creams, teal accents, warm yellows. Detailed hand-drawn look with visible watercolor texture. Realistic toddler and parent proportions (not chibi or oversized heads). Expressive natural faces. Rich detailed background showing a real home environment — bedroom, bathroom, or playroom with toys, furniture, shelves. Soft natural lighting like a classic storybook scene. No text, no logos, no real photographs."
+   - Set `config=types.GenerateContentConfig(response_modalities=["TEXT", "IMAGE"])`
    - Extract the image from `response.candidates[0].content.parts`, find the part with `inline_data`, and save the raw bytes
    - **Resize using crop-to-fit (NEVER force-stretch):**
      1. Open image with Pillow, convert to RGB
@@ -141,11 +141,16 @@ Everything has passed quality checks. Now assemble the final HTML.
     - Set changefreq to "monthly" and priority to "0.8"
 
 18. **Update `blog/index.html`:**
-    - Add a new post card to the blog grid matching the existing card format
+    - Add a new **hardcoded HTML post card** inside the `<div class="posts-container" id="postsGrid">` element, BEFORE the first existing card
+    - Also add the post to the `const blogPosts = [...]` JavaScript array at the top
+    - The HTML card is what actually displays on the page (the JS array is not rendered by default)
+    - Match the exact HTML structure of existing cards (a.post-card > img.post-card-image + div.post-card-content)
     - Place it at the top (newest first)
 
 19. **Update the relevant category page** (`blog/category/<category-slug>.html`):
-    - Add the new post card to the category page
+    - Add a new **hardcoded HTML post card** inside the `<div class="posts-container" id="postsGrid">` element, BEFORE existing cards
+    - Also add the post to the `const blogPosts = [...]` JavaScript array at the top
+    - Same HTML card structure as blog/index.html
 
 20. **Update topics queue** (if topic came from `.claude/topics.md`):
     - Change the topic from `[~]` to `[x]`

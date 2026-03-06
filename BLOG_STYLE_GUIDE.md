@@ -43,8 +43,8 @@ Warm, honest, practical. Parent-to-parent energy. See `voice-profile.md` for ful
 
 ## Image Requirements
 - **Hero image:** One per post. WebP preferred. Stored in /images/blog/. 16:9 aspect ratio.
-- **Style:** Cheerful children's book illustration. Bright colors. Cartoon toddlers. No text overlays. No logos. No real faces.
-- **Prompt template:** "Cheerful children's book watercolor illustration of [scene related to post topic]. Bright pastel colors, soft rounded shapes, happy toddler character. No text, no words, no logos, no letters."
+- **Style:** Watercolor-style children's book illustration. Warm muted earth tones (soft browns, creams, teal accents, warm yellows). Detailed hand-drawn look with visible watercolor texture. Realistic toddler and parent proportions (not chibi or oversized heads). Expressive natural faces. Rich detailed backgrounds showing real home environments (bedrooms, bathrooms, playrooms with toys, furniture, shelves). Soft natural lighting like a classic storybook scene. No text, no logos, no real photographs.
+- **Prompt template:** "Watercolor-style children's book illustration of [scene related to post topic]. Warm muted earth tones — soft browns, creams, teal accents, warm yellows. Detailed hand-drawn look with visible watercolor texture. Realistic toddler and parent proportions (not chibi or oversized heads). Expressive natural faces. Rich detailed background showing a real home environment — bedroom, bathroom, or playroom with toys, furniture, shelves. Soft natural lighting like a classic storybook scene. No text, no logos, no real photographs."
 - **Alt text:** Descriptive and specific. Not "potty training" but "toddler sitting on a small potty chair with a proud expression."
 
 ## Internal Linking
