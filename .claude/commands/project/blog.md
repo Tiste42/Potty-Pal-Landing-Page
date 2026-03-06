@@ -49,13 +49,13 @@ If $ARGUMENTS is empty or says "auto", pick the next available topic from `.clau
 
 ## PHASE 3: GENERATE HERO IMAGE
 
-9. **Generate a hero image** using Gemini (google-genai Python library):
+9. **Generate a hero image** using Imagen 4.0 Ultra (google-genai Python library):
    - First, ensure the library is installed: `pip install google-genai` (skip if already installed)
    - Ask the user for their Gemini API key if not found in environment variables (GEMINI_API_KEY)
-   - Use `google.genai.Client` with model `gemini-2.0-flash-exp-image-generation`
-   - **Prompt:** "Pixar-style 3D cartoon illustration of [scene directly related to the post topic]. Cute, colorful, warm lighting, expressive characters, clean background. No text, no logos."
-   - Set `config=types.GenerateContentConfig(response_modalities=["TEXT", "IMAGE"])`
-   - Extract the image from `response.candidates[0].content.parts`, find the part with `inline_data`, and save the raw bytes
+   - Use `google.genai.Client` with model `imagen-4.0-ultra-generate-001`
+   - **Prompt:** "[Scene directly related to the post topic]. Illustration style: classic American children's picture book, similar to Richard Scarry or Berenstain Bears. Simple, friendly, warm. No text, no words, no logos, no letters, no numbers."
+   - Use `client.models.generate_images(model=..., prompt=..., config=types.GenerateImagesConfig(number_of_images=1))`
+   - Extract the image bytes from `response.generated_images[0].image.image_bytes`
    - **Resize using crop-to-fit (NEVER force-stretch):**
      1. Open image with Pillow, convert to RGB
      2. Calculate scale factor to fit **width** first: `scale = 1200 / img.width`

@@ -43,7 +43,7 @@ Warm, honest, practical. Parent-to-parent energy. See `voice-profile.md` for ful
 
 ## Image Requirements
 - **Hero image:** One per post. WebP preferred. Stored in /images/blog/. 16:9 aspect ratio.
-- **Image style:** Pixar-style 3D cartoon illustration. Cute, colorful, warm lighting, expressive characters, clean background. No text, no logos.
+- **Image style:** Classic American children's picture book, similar to Richard Scarry or Berenstain Bears. Simple, friendly, warm. No text, no logos.
 - **Alt text:** Descriptive and specific. Not "potty training" but "toddler sitting on a small potty chair with a proud expression."
 
 ## Internal Linking
