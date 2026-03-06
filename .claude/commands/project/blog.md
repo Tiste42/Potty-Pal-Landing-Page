@@ -130,7 +130,9 @@ Everything has passed quality checks. Now assemble the final HTML.
     - Set the featured image src to `../images/blog/<slug>.webp` with descriptive alt text
     - Insert the article content HTML
     - Fill in the relatedPosts JavaScript array with 2-3 related posts
+    - **Verify related post image filenames** by checking what actually exists in `images/blog/` with Glob. Do NOT guess filenames — use the real file that exists on disk.
     - Update the CTA section heading and description (vary from other posts)
+    - **Store picker modal:** The download button must show both App Store and Play Store on desktop (not default to one store). Include the `trackAndNavigate()`, `showStorePicker()`, `closeStorePicker()` functions and the `storePicker` modal HTML before `</body>`. The `handleDownloadClick()` must call `showStorePicker()` when `storeLink === 'both'`. Copy this exactly from `blog/post-template.html`.
 
 ## PHASE 6: UPDATE SITE FILES
 
