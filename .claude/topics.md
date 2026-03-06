@@ -5,7 +5,7 @@ Status legend: `[ ]` = available, `[x]` = published, `[~]` = in progress
 ## Readiness & Starting Out
 - [x] Is Your Toddler Ready? 8 Signs of Potty Training Readiness
 - [x] The 3-Day Potty Training Method: Does It Actually Work?
-- [ ] Potty Training at 18 Months vs 3 Years: What the Research Says
+- [x] Potty Training at 18 Months vs 3 Years: What the Research Says
 - [ ] First Day of Potty Training: An Hour-by-Hour Guide
 - [ ] Potty Chair vs Toilet Seat Insert: Which One Should You Buy?
 
