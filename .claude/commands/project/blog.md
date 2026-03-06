@@ -53,7 +53,7 @@ If $ARGUMENTS is empty or says "auto", pick the next available topic from `.clau
    - First, ensure the library is installed: `pip install google-genai` (skip if already installed)
    - Ask the user for their Gemini API key if not found in environment variables (GEMINI_API_KEY)
    - Use `google.genai.Client` with model `gemini-2.0-flash-exp-image-generation`
-   - **Prompt:** "Whimsical flat cartoon illustration for a children's app of [scene directly related to the post topic]. Bold clean lines, simple geometric shapes, flat color fills. Characters have oversized round heads, tiny dot eyes, simple curved smile lines, circle blush cheeks. Bodies are simple bean or cylinder shapes. Color palette: warm pastels — soft teal, coral, cream, light green, sunny yellow. Solid flat background with one or two simple props. Think Google Doodle meets Headspace animation meets Duolingo characters. Absolutely NO realism, NO detailed facial features, NO skin texture, NO shading on faces. Characters should look like friendly emoji come to life. Fun, clean, modern, approachable. No text, no logos."
+   - **Prompt:** "Pixar-style 3D cartoon illustration of [scene directly related to the post topic]. Cute, colorful, warm lighting, expressive characters, clean background. No text, no logos."
    - Set `config=types.GenerateContentConfig(response_modalities=["TEXT", "IMAGE"])`
    - Extract the image from `response.candidates[0].content.parts`, find the part with `inline_data`, and save the raw bytes
    - **Resize using crop-to-fit (NEVER force-stretch):**

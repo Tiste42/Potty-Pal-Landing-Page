@@ -43,8 +43,7 @@ Warm, honest, practical. Parent-to-parent energy. See `voice-profile.md` for ful
 
 ## Image Requirements
 - **Hero image:** One per post. WebP preferred. Stored in /images/blog/. 16:9 aspect ratio.
-- **Style:** Whimsical flat cartoon illustration for a children's app. Bold clean lines, simple geometric shapes, flat color fills. Characters have oversized round heads, tiny dot eyes, simple curved smile lines, circle blush cheeks. Bodies are simple bean or cylinder shapes. Color palette: warm pastels (soft teal, coral, cream, light green, sunny yellow). Solid flat backgrounds with maybe one or two simple props. Think Google Doodle meets Headspace animation meets Duolingo characters. Absolutely NO realism, NO detailed facial features, NO skin texture, NO shading on faces. Characters should look like friendly emoji come to life. Fun, clean, modern, approachable.
-- **Prompt template:** "Whimsical flat cartoon illustration for a children's app of [scene related to post topic]. Bold clean lines, simple geometric shapes, flat color fills. Characters have oversized round heads, tiny dot eyes, simple curved smile lines, circle blush cheeks. Bodies are simple bean or cylinder shapes. Color palette: warm pastels — soft teal, coral, cream, light green, sunny yellow. Solid flat background with one or two simple props. Think Google Doodle meets Headspace animation meets Duolingo characters. Absolutely NO realism, NO detailed facial features, NO skin texture, NO shading on faces. Characters should look like friendly emoji come to life. Fun, clean, modern, approachable. No text, no logos."
+- **Image style:** Pixar-style 3D cartoon illustration. Cute, colorful, warm lighting, expressive characters, clean background. No text, no logos.
 - **Alt text:** Descriptive and specific. Not "potty training" but "toddler sitting on a small potty chair with a proud expression."
 
 ## Internal Linking
