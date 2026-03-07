@@ -67,29 +67,18 @@ If $ARGUMENTS is empty or says "auto", pick the next available topic from `.clau
 
 ## PHASE 4: QUALITY CHECKS
 
-Run all checks BEFORE publishing. Fix any issues and recheck until everything passes.
+Run all checks BEFORE publishing. If any check fails, flag it in the final output but continue the pipeline.
 
-### Step 10: Word Count & Readability
-
-Use the **`word-stats`** skill on the post content (strip HTML tags first) to confirm:
-- Standard posts hit 1,000-1,500 words
-- In-depth posts hit 1,500-2,000 words
-- Quick posts hit 600-900 words
-
-Then use the **`readability`** skill to verify:
-- Flesch-Kincaid grade level is between 5-8 (parents reading on their phones at 2 AM)
-- If grade level is above 8, simplify long sentences and recheck
-
-### Step 11: AI Detection & Humanization
+### Step 10: AI Detection & Humanization
 
 Use the **`detect-ai`** skill on the post content. This returns a 0-100 AI detection score.
 - **Score 0-30:** Pass. Move on.
-- **Score 31-50:** Borderline. Use the **`humanizer`** skill to rewrite flagged sections, then re-run `detect-ai` to confirm the score dropped below 30.
-- **Score 51+:** Fail. Use the **`humanizer`** skill on the full post, then re-run `detect-ai`. If still above 30, manually rewrite the worst sections.
+- **Score 31-50:** Borderline. Use the **`humanizer`** skill to rewrite flagged sections.
+- **Score 51+:** Fail. Use the **`humanizer`** skill on the full post.
 
 After humanization (if needed), scan for banned words from voice-profile.md.
 
-### Step 12: SEO Audit
+### Step 11: SEO Audit
 
 Use the **`seo-audit`** skill on the HTML content. Verify:
 - Meta description is under 160 characters
@@ -99,20 +88,13 @@ Use the **`seo-audit`** skill on the HTML content. Verify:
 - Featured image alt text is descriptive
 - No broken internal links
 
-### Step 13: GEO / AI Search Optimization
+### Step 12: GEO / AI Search Optimization
 
 Use the **`ai-seo`** skill on the post content to check AI citation readiness:
 - At least 2 paragraphs contain direct-answer statements an AI search engine could extract
 - Post includes specific ages, timeframes, or statistics (not vague generalities)
 - Content is structured with clear H2 question/topic headers that AI can parse
 - FAQ section present with real parent questions
-
-### Step 14: Fix & Recheck Loop
-
-If any check from Steps 10-13 failed:
-- Fix the issue in the post content
-- Re-run the failed check to confirm it passes
-- Repeat until all checks pass
 
 ## PHASE 5: BUILD THE HTML FILE
 
