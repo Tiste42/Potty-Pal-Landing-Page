@@ -1234,19 +1234,7 @@
         return 'both';
       }
       
-      // Handle download button clicks with proper tracking for mobile and desktop
-      function handleDownloadClick(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        
-        const storeLink = getAppStoreLink();
-        
-        // Determine which store for tracking
-        const isIOS = storeLink.includes('apps.apple.com');
-        const storeName = isIOS ? 'App Store' : 'Google Play';
-        const finalUrl = storeLink === 'both' ? 'https://play.google.com/store/apps/details?id=com.pottypalai.app' : storeLink;
-        
-        // Track with Facebook Pixel (must fire before navigation, especially on mobile)
+      function trackAndNavigate(url, storeName) {
         if (typeof fbq !== 'undefined') {
           try {
             fbq('track', 'Lead', {
@@ -1260,8 +1248,6 @@
             console.warn('Facebook Pixel tracking error:', e);
           }
         }
-        
-        // Track with Google Analytics
         if (typeof gtag !== 'undefined') {
           try {
             gtag('event', 'download_click', {
@@ -1273,12 +1259,34 @@
             console.warn('Google Analytics tracking error:', e);
           }
         }
-        
-        // Small delay to ensure tracking fires before navigation (critical for mobile)
-        // Mobile browsers may navigate too quickly, causing tracking to be lost
         setTimeout(function() {
-          window.open(finalUrl, '_blank', 'noopener,noreferrer');
+          window.open(url, '_blank', 'noopener,noreferrer');
         }, 150);
+      }
+
+      function showStorePicker() {
+        var modal = document.getElementById('storePicker');
+        if (modal) modal.style.display = 'flex';
+      }
+
+      function closeStorePicker() {
+        var modal = document.getElementById('storePicker');
+        if (modal) modal.style.display = 'none';
+      }
+
+      function handleDownloadClick(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const storeLink = getAppStoreLink();
+
+        if (storeLink === 'both') {
+          showStorePicker();
+          return;
+        }
+
+        const storeName = storeLink.includes('apps.apple.com') ? 'App Store' : 'Google Play';
+        trackAndNavigate(storeLink, storeName);
       }
       
       // Attach smart download links to all download buttons
@@ -1288,6 +1296,26 @@
       });
     });
   </script>
+
+  <!-- Store Picker Modal (shown on desktop when platform is unknown) -->
+  <div id="storePicker" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:9999;align-items:center;justify-content:center;" onclick="if(event.target===this)closeStorePicker()">
+    <div style="background:#fff;border-radius:20px;padding:36px 32px;max-width:360px;width:90%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,0.18);position:relative;">
+      <button onclick="closeStorePicker()" aria-label="Close" style="position:absolute;top:14px;right:18px;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#888;">&times;</button>
+      <div style="font-size:2.5rem;margin-bottom:8px;">&#x1F6BD;</div>
+      <h3 style="font-family:'Fredoka',Arial,sans-serif;color:#1A535C;margin:0 0 6px;">Download Potty Pal AI</h3>
+      <p style="color:#555;font-size:0.95rem;margin:0 0 24px;">Choose your platform:</p>
+      <a href="https://apps.apple.com/app/id6751612917" target="_blank" rel="noopener noreferrer"
+         onclick="trackAndNavigate('https://apps.apple.com/app/id6751612917','App Store');closeStorePicker();"
+         style="display:block;background:#000;color:#fff;border-radius:12px;padding:14px 0;font-weight:700;font-size:1rem;text-decoration:none;margin-bottom:12px;">
+        &#x1F34E; Download on the App Store
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.pottypalai.app" target="_blank" rel="noopener noreferrer"
+         onclick="trackAndNavigate('https://play.google.com/store/apps/details?id=com.pottypalai.app','Google Play');closeStorePicker();"
+         style="display:block;background:#4ECDC4;color:#fff;border-radius:12px;padding:14px 0;font-weight:700;font-size:1rem;text-decoration:none;">
+        &#x1F916; Get it on Google Play
+      </a>
+    </div>
+  </div>
 </body>
 </html>
 
