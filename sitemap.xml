@@ -36,6 +36,12 @@
 
   <!-- Blog Posts -->
   <url>
+    <loc>https://www.pottypalai.com/blog/potty-chair-vs-toilet-seat-insert.html</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.pottypalai.com/blog/first-day-potty-training-hour-by-hour.html</loc>
     <lastmod>2026-03-06</lastmod>
     <changefreq>monthly</changefreq>

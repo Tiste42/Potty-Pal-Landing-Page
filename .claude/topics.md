@@ -7,7 +7,7 @@ Status legend: `[ ]` = available, `[x]` = published, `[~]` = in progress
 - [x] The 3-Day Potty Training Method: Does It Actually Work?
 - [x] Potty Training at 18 Months vs 3 Years: What the Research Says
 - [x] First Day of Potty Training: An Hour-by-Hour Guide
-- [ ] Potty Chair vs Toilet Seat Insert: Which One Should You Buy?
+- [x] Potty Chair vs Toilet Seat Insert: Which One Should You Buy?
 
 ## Common Problems
 - [x] Poop Withholding: Why It Happens and What to Do
