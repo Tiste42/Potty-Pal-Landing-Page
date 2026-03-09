@@ -13,7 +13,7 @@ Status legend: `[ ]` = available, `[x]` = published, `[~]` = in progress
 - [x] Poop Withholding: Why It Happens and What to Do
 - [x] 5 Strategies for Potty Training Resistance
 - [x] Potty Training and Constipation: Breaking the Cycle
-- [ ] When Your Toddler Will Pee But Won't Poop on the Potty
+- [x] When Your Toddler Will Pee But Won't Poop on the Potty
 - [ ] Potty Training Power Struggles: How to Stop Fighting and Start Winning
 
 ## Regression & Setbacks
