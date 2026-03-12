@@ -19,7 +19,7 @@ Status legend: `[ ]` = available, `[x]` = published, `[~]` = in progress
 ## Regression & Setbacks
 - [x] Potty Training Regression: What Causes It and How to Bounce Back
 - [x] Potty Training Regression at Preschool: What Parents Need to Know
-- [ ] Potty Training After a New Baby: Why Regression Happens and How to Handle It
+- [x] Potty Training After a New Baby: Why Regression Happens and How to Handle It
 - [ ] My Kid Was Trained and Now They're Not: A Reset Guide
 - [ ] Potty Training Setbacks During Illness: When to Pause and When to Push
 
