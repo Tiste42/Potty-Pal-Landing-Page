@@ -21,7 +21,7 @@ Status legend: `[ ]` = available, `[x]` = published, `[~]` = in progress
 - [x] Potty Training Regression at Preschool: What Parents Need to Know
 - [x] Potty Training After a New Baby: Why Regression Happens and How to Handle It
 - [x] My Kid Was Trained and Now They're Not: A Reset Guide
-- [ ] Potty Training Setbacks During Illness: When to Pause and When to Push
+- [x] Potty Training Setbacks During Illness: When to Pause and When to Push
 
 ## Night Training
 - [x] Dry During the Day, Wet at Night: What's Going On?
