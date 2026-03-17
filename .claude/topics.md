@@ -27,7 +27,7 @@ Status legend: `[ ]` = available, `[x]` = published, `[~]` = in progress
 - [x] Dry During the Day, Wet at Night: What's Going On?
 - [x] When to Drop the Overnight Pull-Up: Signs Your Child Is Ready
 - [x] Bedwetting at Age 5: When It's Normal and When to Talk to Your Doctor
-- [ ] Night Training Hacks: Waterproof Mattress Setups That Actually Work
+- [x] Night Training Hacks: Waterproof Mattress Setups That Actually Work
 
 ## Special Situations
 - [x] Potty Training on an Airplane: A Survival Guide
