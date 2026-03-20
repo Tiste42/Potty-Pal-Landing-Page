@@ -34,7 +34,7 @@ Status legend: `[ ]` = available, `[x]` = published, `[~]` = in progress
 - [x] Potty Training Accidents in Public: How to Handle Them
 - [x] Potty Training in Small Spaces: Apartment and Travel Tips
 - [x] Potty Training at Daycare: How to Get Your Provider on the Same Page
-- [ ] Potty Training During a Move: Keeping Consistency When Everything Changes
+- [x] Potty Training During a Move: Keeping Consistency When Everything Changes
 - [ ] Potty Training Twins: Same Timeline or Separate Tracks?
 
 ## Encouragement & Mindset
