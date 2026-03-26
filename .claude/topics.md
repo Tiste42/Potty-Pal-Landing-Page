@@ -43,4 +43,4 @@ Status legend: `[ ]` = available, `[x]` = published, `[~]` = in progress
 - [x] Potty Training Rewards: Stickers, Treats, or Nothing at All?
 - [x] When to Take a Potty Training Break (and How to Restart)
 - [x] Potty Training Comparison Trap: Why Your Neighbor's Kid Doesn't Matter
-- [ ] Dad's Guide to Potty Training: Tips for Involved Fathers
+- [x] Dad's Guide to Potty Training: Tips for Involved Fathers
