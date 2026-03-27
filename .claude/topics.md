@@ -44,3 +44,5 @@ Status legend: `[ ]` = available, `[x]` = published, `[~]` = in progress
 - [x] When to Take a Potty Training Break (and How to Restart)
 - [x] Potty Training Comparison Trap: Why Your Neighbor's Kid Doesn't Matter
 - [x] Dad's Guide to Potty Training: Tips for Involved Fathers
+n## Boys vs Girls
+- [x] Potty Training Boys vs Girls: Does Gender Really Matter?
