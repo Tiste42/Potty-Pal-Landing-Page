@@ -44,5 +44,20 @@ Status legend: `[ ]` = available, `[x]` = published, `[~]` = in progress
 - [x] When to Take a Potty Training Break (and How to Restart)
 - [x] Potty Training Comparison Trap: Why Your Neighbor's Kid Doesn't Matter
 - [x] Dad's Guide to Potty Training: Tips for Involved Fathers
-n## Boys vs Girls
+
+## Boys vs Girls
 - [x] Potty Training Boys vs Girls: Does Gender Really Matter?
+
+## Strong-Willed & Personality
+- [x] Potty Training a Strong-Willed Child: What Actually Works
+- [ ] How Long Does Potty Training Actually Take?
+- [ ] Potty Training a Shy or Anxious Child
+- [ ] Potty Training and Screen Time: Should You Use Videos on the Potty?
+
+## Grandparents & Family
+- [ ] Grandparents and Potty Training: Getting Everyone on the Same Page
+- [ ] Potty Training When Parents Disagree on the Approach
+
+## Public & Away From Home
+- [ ] Public Restroom Fears: Helping Your Toddler Use Toilets Away From Home
+- [ ] Potty Training on Vacation: How to Keep Progress Going
