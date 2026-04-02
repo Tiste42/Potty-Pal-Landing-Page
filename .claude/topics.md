@@ -51,8 +51,8 @@ Status legend: `[ ]` = available, `[x]` = published, `[~]` = in progress
 ## Strong-Willed & Personality
 - [x] Potty Training a Strong-Willed Child: What Actually Works
 - [x] How Long Does Potty Training Actually Take?
-- [ ] Potty Training a Shy or Anxious Child
-- [ ] Potty Training and Screen Time: Should You Use Videos on the Potty?
+- [x] Potty Training a Shy or Anxious Child
+- [x] Potty Training and Screen Time: Should You Use Videos on the Potty?
 
 ## Grandparents & Family
 - [ ] Grandparents and Potty Training: Getting Everyone on the Same Page
