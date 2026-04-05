@@ -55,9 +55,9 @@ Status legend: `[ ]` = available, `[x]` = published, `[~]` = in progress
 - [x] Potty Training and Screen Time: Should You Use Videos on the Potty?
 
 ## Grandparents & Family
-- [ ] Grandparents and Potty Training: Getting Everyone on the Same Page
-- [ ] Potty Training When Parents Disagree on the Approach
+- [x] Grandparents and Potty Training: Getting Everyone on the Same Page
+- [x] Potty Training When Parents Disagree on the Approach
 
 ## Public & Away From Home
-- [ ] Public Restroom Fears: Helping Your Toddler Use Toilets Away From Home
+- [x] Public Restroom Fears: Helping Your Toddler Use Toilets Away From Home
 - [ ] Potty Training on Vacation: How to Keep Progress Going
