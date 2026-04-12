@@ -60,4 +60,7 @@ Status legend: `[ ]` = available, `[x]` = published, `[~]` = in progress
 
 ## Public & Away From Home
 - [x] Public Restroom Fears: Helping Your Toddler Use Toilets Away From Home
-- [ ] Potty Training on Vacation: How to Keep Progress Going
+- [x] Potty Training on Vacation: How to Keep Progress Going
+
+## Seasonal
+- [x] Summer Potty Training: Why Warm Weather Makes It Easier
