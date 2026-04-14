@@ -64,3 +64,6 @@ Status legend: `[ ]` = available, `[x]` = published, `[~]` = in progress
 
 ## Seasonal
 - [x] Summer Potty Training: Why Warm Weather Makes It Easier
+
+## Neurodivergent & Sensory
+- [x] Potty Training a Child with Autism: A Sensory-Friendly Approach
