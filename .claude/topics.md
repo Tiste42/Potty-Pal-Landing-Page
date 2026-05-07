@@ -22,6 +22,7 @@ Status legend: `[ ]` = available, `[x]` = published, `[~]` = in progress
 - [x] Potty Training After a New Baby: Why Regression Happens and How to Handle It
 - [x] My Kid Was Trained and Now They're Not: A Reset Guide
 - [x] Potty Training Setbacks During Illness: When to Pause and When to Push
+- [~] The Potty Training Plateau: When Progress Stalls After a Strong Start
 
 ## Night Training
 - [x] Dry During the Day, Wet at Night: What's Going On?
@@ -67,3 +68,6 @@ Status legend: `[ ]` = available, `[x]` = published, `[~]` = in progress
 
 ## Neurodivergent & Sensory
 - [x] Potty Training a Child with Autism: A Sensory-Friendly Approach
+
+## Cleanup & Practical
+- [x] Potty Training Accident Cleanup: A Survival Guide for Carpets, Car Seats, and Couches
