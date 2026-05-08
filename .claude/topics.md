@@ -37,6 +37,7 @@ Status legend: `[ ]` = available, `[x]` = published, `[~]` = in progress
 - [x] Potty Training at Daycare: How to Get Your Provider on the Same Page
 - [x] Potty Training During a Move: Keeping Consistency When Everything Changes
 - [x] Potty Training Twins: Same Timeline or Separate Tracks?
+- [x] Potty Training While Pregnant: How to Make It Work Before Baby Arrives
 
 ## Encouragement & Mindset
 - [x] Potty Training as a New Year's Resolution: Setting Realistic Goals
