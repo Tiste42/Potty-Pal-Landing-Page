@@ -36,6 +36,12 @@
 
   <!-- Blog Posts -->
   <url>
+    <loc>https://www.pottypalai.com/blog/toddler-only-goes-potty-for-one-parent.html</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.pottypalai.com/blog/toddler-pees-right-after-potty.html</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>monthly</changefreq>
