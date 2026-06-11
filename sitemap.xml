@@ -36,6 +36,12 @@
 
   <!-- Blog Posts -->
   <url>
+    <loc>https://www.pottypalai.com/blog/toddler-poops-at-night-in-sleep.html</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.pottypalai.com/blog/nap-time-pull-up-potty-training.html</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
