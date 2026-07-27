@@ -830,27 +830,24 @@
     }
     
     // Track a store click and navigate
-    function trackAndNavigate(url, storeName) {
+    function trackAndNavigate(url, storeName, ctaLocation) {
+      var eventData = {
+        store: storeName === 'App Store' ? 'apple' : 'google',
+        cta_location: ctaLocation || 'download_cta',
+        page_path: window.location.pathname,
+        content_slug: window.location.pathname === '/' ? 'home' : window.location.pathname.replace(/^\/|\/$/g, '').replace(/\.html$/, ''),
+        offer: '7_day_reset'
+      };
       if (typeof fbq !== 'undefined') {
         try {
-          fbq('track', 'Lead', {
-            content_name: 'App Download Click',
-            content_category: storeName,
-            content_ids: [storeName],
-            value: 0,
-            currency: 'USD'
-          });
+          fbq('trackCustom', 'StoreClick', eventData);
         } catch (e) {
           console.warn('Facebook Pixel tracking error:', e);
         }
       }
       if (typeof gtag !== 'undefined') {
         try {
-          gtag('event', 'download_click', {
-            'event_category': 'App Download',
-            'event_label': storeName,
-            'value': 0
-          });
+          gtag('event', 'store_click', eventData);
         } catch (e) {
           console.warn('Google Analytics tracking error:', e);
         }
@@ -884,7 +881,10 @@
       }
 
       const storeName = storeLink.includes('apps.apple.com') ? 'App Store' : 'Google Play';
-      trackAndNavigate(storeLink, storeName);
+      const ctaLocation = event.currentTarget && event.currentTarget.closest('article')
+        ? 'article'
+        : 'download_cta';
+      trackAndNavigate(storeLink, storeName, ctaLocation);
     }
 
     // Hamburger Menu functionality
@@ -946,12 +946,12 @@
       <h3 style="font-family:'Fredoka',Arial,sans-serif;color:#1A535C;margin:0 0 6px;">Download Potty Pal AI</h3>
       <p style="color:#555;font-size:0.95rem;margin:0 0 24px;">Choose your platform:</p>
       <a href="https://apps.apple.com/app/id6751612917" target="_blank" rel="noopener noreferrer"
-         onclick="trackAndNavigate('https://apps.apple.com/app/id6751612917','App Store');closeStorePicker();"
+         onclick="event.preventDefault();trackAndNavigate('https://apps.apple.com/app/id6751612917','App Store','store_picker');closeStorePicker();"
          style="display:block;background:#000;color:#fff;border-radius:12px;padding:14px 0;font-weight:700;font-size:1rem;text-decoration:none;margin-bottom:12px;">
         &#x1F34E; Download on the App Store
       </a>
       <a href="https://play.google.com/store/apps/details?id=com.pottypalai.app" target="_blank" rel="noopener noreferrer"
-         onclick="trackAndNavigate('https://play.google.com/store/apps/details?id=com.pottypalai.app','Google Play');closeStorePicker();"
+         onclick="event.preventDefault();trackAndNavigate('https://play.google.com/store/apps/details?id=com.pottypalai.app','Google Play','store_picker');closeStorePicker();"
          style="display:block;background:#4ECDC4;color:#fff;border-radius:12px;padding:14px 0;font-weight:700;font-size:1rem;text-decoration:none;">
         &#x1F916; Get it on Google Play
       </a>

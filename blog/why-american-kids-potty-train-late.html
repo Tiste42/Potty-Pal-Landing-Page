@@ -703,23 +703,23 @@
 
       <h2>How Potty Pal AI Helps You Train on Your Timeline (and Save Hundreds)</h2>
 
-      <p>So the diaper industry profits $858 per child for every extra year you wait. A single month of diapers runs about $72. What if you had an expert in your pocket helping you train on <em>your</em> family's timeline instead of the diaper industry's?</p>
+      <p>So the diaper industry profits $858 per child for every extra year you wait. A single month of diapers runs about $72. What if you had practical, personalized support helping you train on <em>your</em> family's timeline instead of the diaper industry's?</p>
 
       <p>That's exactly what <a href="../index.html">Potty Pal AI</a> does. Here's how it works:</p>
 
-      <p><strong>A personalized plan built around YOUR child.</strong> Tell the app your child's age, personality, and your preferred training style. The AI creates a custom, science-backed plan just for your family. No more guessing whether your kid is ready or scrolling through parenting forums at midnight (remember that scene from the intro?).</p>
+      <p><strong>A personalized plan built around YOUR child.</strong> Tell the app your child's age, needs, and your preferred training style. The AI creates a starter plan just for your family. No more guessing whether your kid is ready or scrolling through parenting forums at midnight (remember that scene from the intro?).</p>
 
-      <p><strong>Expert answers 24/7.</strong> Got a question at 2am when your toddler wakes up dry for the first time? Ask Potty Pal. The AI knows your child's entire training history and gives you advice that's actually specific to your situation, not generic tips from a book that doesn't know your kid.</p>
+      <p><strong>Personalized answers when you need them.</strong> Got a question at 2am when your toddler wakes up dry for the first time? Ask Potty Pal. The app uses your child's profile and logged progress to make its guidance more relevant than a generic list of tips.</p>
 
       <p><strong>Progress tracking that catches what you'd miss.</strong> Log successes and accidents in seconds. The AI spots patterns in your child's readiness, like consistent dry stretches or increasing bathroom awareness, and adjusts its guidance based on real data. You'll know when your child is ready before the diaper companies want you to.</p>
 
-      <p><strong>No subscription. No auto-renewal.</strong> There's some irony in an article about the diaper industry's recurring revenue model, so here's what Potty Pal doesn't do: charge you every month. It's $4.99 for a one-time weekly pass or $39.99 for lifetime access. That lifetime price is less than what you'd spend on diapers in two weeks. No auto-renewal. No recurring charges. Ever.</p>
+      <p><strong>No subscription. No auto-renewal.</strong> There's some irony in an article about the diaper industry's recurring revenue model, so here's what Potty Pal doesn't do: charge you every month. It's $2.99 for a one-time 7-day pass or $24.99 for lifetime access. No auto-renewal. No recurring charges. Ever.</p>
 
       <h3>The Savings Math</h3>
 
-      <p>If Potty Pal helps your child train just <strong>two months earlier</strong>, you'll save roughly $143 on diapers alone. The lifetime plan ($39.99) pays for itself before you finish the first week of training. And if you've got a second kid? You're already covered.</p>
+      <p>If Potty Pal helps your child train just <strong>two months earlier</strong>, you'll save roughly $143 on diapers alone. The lifetime plan ($24.99) costs less than two weeks of diapers at that estimate. And if you've got a second kid? You're already covered.</p>
 
-      <p>You can also start completely free. The free tier gives you 2 AI queries per day and a basic training plan, so there's zero risk in trying it out.</p>
+      <p>You can also start completely free. The free tier gives you 4 AI coaching questions per day, a personalized starter plan, progress logs, and up to 2 reminders.</p>
 
       <p>The diaper industry spent decades convincing parents to wait longer. Potty Pal gives you the tools to decide for yourself.</p>
 
@@ -861,27 +861,24 @@
     }
 
     // Track a store click and navigate
-    function trackAndNavigate(url, storeName) {
+    function trackAndNavigate(url, storeName, ctaLocation) {
+      var eventData = {
+        store: storeName === 'App Store' ? 'apple' : 'google',
+        cta_location: ctaLocation || 'download_cta',
+        page_path: window.location.pathname,
+        content_slug: window.location.pathname === '/' ? 'home' : window.location.pathname.replace(/^\/|\/$/g, '').replace(/\.html$/, ''),
+        offer: '7_day_reset'
+      };
       if (typeof fbq !== 'undefined') {
         try {
-          fbq('track', 'Lead', {
-            content_name: 'App Download Click',
-            content_category: storeName,
-            content_ids: [storeName],
-            value: 0,
-            currency: 'USD'
-          });
+          fbq('trackCustom', 'StoreClick', eventData);
         } catch (e) {
           console.warn('Facebook Pixel tracking error:', e);
         }
       }
       if (typeof gtag !== 'undefined') {
         try {
-          gtag('event', 'download_click', {
-            'event_category': 'App Download',
-            'event_label': storeName,
-            'value': 0
-          });
+          gtag('event', 'store_click', eventData);
         } catch (e) {
           console.warn('Google Analytics tracking error:', e);
         }
@@ -915,7 +912,10 @@
       }
 
       const storeName = storeLink.includes('apps.apple.com') ? 'App Store' : 'Google Play';
-      trackAndNavigate(storeLink, storeName);
+      const ctaLocation = event.currentTarget && event.currentTarget.closest('article')
+        ? 'article'
+        : 'download_cta';
+      trackAndNavigate(storeLink, storeName, ctaLocation);
     }
 
     // Hamburger Menu functionality
@@ -977,12 +977,12 @@
       <h3 style="font-family:'Fredoka',Arial,sans-serif;color:#1A535C;margin:0 0 6px;">Download Potty Pal AI</h3>
       <p style="color:#555;font-size:0.95rem;margin:0 0 24px;">Choose your platform:</p>
       <a href="https://apps.apple.com/app/id6751612917" target="_blank" rel="noopener noreferrer"
-         onclick="trackAndNavigate('https://apps.apple.com/app/id6751612917','App Store');closeStorePicker();"
+         onclick="event.preventDefault();trackAndNavigate('https://apps.apple.com/app/id6751612917','App Store','store_picker');closeStorePicker();"
          style="display:block;background:#000;color:#fff;border-radius:12px;padding:14px 0;font-weight:700;font-size:1rem;text-decoration:none;margin-bottom:12px;">
         &#x1F34E; Download on the App Store
       </a>
       <a href="https://play.google.com/store/apps/details?id=com.pottypalai.app" target="_blank" rel="noopener noreferrer"
-         onclick="trackAndNavigate('https://play.google.com/store/apps/details?id=com.pottypalai.app','Google Play');closeStorePicker();"
+         onclick="event.preventDefault();trackAndNavigate('https://play.google.com/store/apps/details?id=com.pottypalai.app','Google Play','store_picker');closeStorePicker();"
          style="display:block;background:#4ECDC4;color:#fff;border-radius:12px;padding:14px 0;font-weight:700;font-size:1rem;text-decoration:none;">
         &#x1F916; Get it on Google Play
       </a>
