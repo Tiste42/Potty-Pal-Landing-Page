@@ -8,7 +8,7 @@ If $ARGUMENTS is empty or says "auto", pick the next available topic from `.clau
 
 ## PHASE 1: TOPIC SELECTION & RESEARCH
 
-1. **If no topic given**, read `.claude/topics.md` and pick the first `[ ]` topic. Mark it `[~]` (in progress).
+1. **If no topic given**, read `.claude/topics.md` and pick the first `[ ]` topic. If there is no unchecked topic, stop with no file changes. Never invent an unapproved topic. Mark the selected topic `[~]` (in progress).
 
 2. **Research the topic** using WebSearch. Search 3-5 angles: pediatric guidance, parent forums, competing blog posts, age-specific advice, and common myths. Get real data, real scenarios, real ages. No generic filler.
 
@@ -49,25 +49,14 @@ If $ARGUMENTS is empty or says "auto", pick the next available topic from `.clau
 
 ## PHASE 3: GENERATE HERO IMAGE
 
-9. **Generate a hero image** using Imagen 4.0 Ultra (google-genai Python library):
-   - First, ensure the library is installed: `pip install google-genai` (skip if already installed)
-   - Ask the user for their Gemini API key if not found in environment variables (GEMINI_API_KEY)
-   - Use `google.genai.Client` with model `imagen-4.0-ultra-generate-001`
-   - **Prompt:** "[Scene directly related to the post topic]. Illustration style: classic American children's picture book, similar to Richard Scarry or Berenstain Bears. Simple, friendly, warm. No text, no words, no logos, no letters, no numbers."
-   - Use `client.models.generate_images(model=..., prompt=..., config=types.GenerateImagesConfig(number_of_images=1))`
-   - Extract the image bytes from `response.generated_images[0].image.image_bytes`
-   - **Resize using crop-to-fit (NEVER force-stretch):**
-     1. Open image with Pillow, convert to RGB
-     2. Calculate scale factor to fit **width** first: `scale = 1200 / img.width`
-     3. Resize maintaining aspect ratio: `(1200, int(img.height * scale))` with `Image.LANCZOS`
-     4. If resized height < 675, recalculate using height instead: `scale = 675 / img.height`, resize to `(int(img.width * scale), 675)`, then center-crop width
-     5. Center-crop to exactly 1200x675 (16:9): `top = (h - 675) // 2; img.crop((left, top, left + 1200, top + 675))`
-     6. Save as WebP (quality=85) to `images/blog/<slug>.webp`
-   - This ensures no distortion regardless of source image dimensions
+9. **Generate a dependable branded hero image** with the local generator:
+   - Run `py scripts/generate-blog-hero.py --title "<post title>" --slug "<slug>" --category "<category-slug>" --output "images/blog/<slug>.webp"`.
+   - Do not install packages, call an external image API, copy another article's image, or substitute a placeholder.
+   - Confirm the command succeeds and the output is a 1200x675 WebP. If it fails, reset the selected topic from `[~]` to `[ ]`, then stop without publishing.
 
 ## PHASE 4: QUALITY CHECKS
 
-Run all checks BEFORE publishing. If any check fails, flag it in the final output but continue the pipeline.
+Run all checks BEFORE publishing. If any check fails, reset the selected topic from `[~]` to `[ ]`, then stop. Do not commit or push a partial or failed release.
 
 ### Step 10: AI Detection & Humanization
 
@@ -141,13 +130,17 @@ Everything has passed quality checks. Now assemble the final HTML.
 
 ## PHASE 7: COMMIT AND PUSH
 
-21. **Stage and commit:**
+21. **Run the fail-closed release validator:**
+    - `py scripts/validate-blog-release.py --slug "<slug>" --category "<category-slug>"`
+    - If validation fails, do not stage, commit, or push. Reset the selected topic from `[~]` to `[ ]` and report the errors.
+
+22. **Stage and commit only after validation passes:**
     - `git add blog/<slug>.html images/blog/<slug>.webp sitemap.xml blog/index.html blog/category/<category-slug>.html`
     - Also add .claude/topics.md if it was modified
     - Commit message: "Add blog post: <post-title>"
     - `git push origin master`
 
-22. **Report what was done:**
+23. **Report what was done:**
     - Post title and slug
     - Category
     - Word count and readability grade

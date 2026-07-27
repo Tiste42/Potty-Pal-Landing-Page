@@ -1,0 +1,5 @@
+.claude/logs/
+.claude/settings.local.json
+.claude/.blog-publish.lock
+__pycache__/
+*.tmp
