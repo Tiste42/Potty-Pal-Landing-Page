@@ -56,6 +56,9 @@ def main() -> None:
         parsed = urlparse(href)
         if parsed.scheme in {"http", "https", "mailto", "tel"} or href.startswith(("#", "javascript:")):
             continue
+        if "${" in href:
+            # Dynamic template-literal href (e.g. related-posts render); not a static link.
+            continue
         target = (article.parent / parsed.path).resolve()
         if parsed.path.endswith("/"):
             target = target / "index.html"
