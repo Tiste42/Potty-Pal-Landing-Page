@@ -3,3 +3,5 @@
 .claude/.blog-publish.lock
 __pycache__/
 *.tmp
+
+.claude/publish-runs/

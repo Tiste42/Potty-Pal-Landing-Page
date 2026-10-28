@@ -75,7 +75,7 @@ Status legend: `[ ]` = available, `[x]` = published, `[~]` = in progress
 - [x] Potty Training Accident Cleanup: A Survival Guide for Carpets, Car Seats, and Couches
 
 ## Approved Revenue-Intent Queue
-- [ ] 3-Day Potty Training Schedule: What to Do Hour by Hour
+- [x] 3-Day Potty Training Schedule: What to Do Hour by Hour
 - [ ] Potty Training Regression After Daycare or a New Sibling
 - [ ] Toddler Hides to Poop: A Calm Step-by-Step Response
 - [ ] Potty Training Rewards Chart: What Works Without Power Struggles

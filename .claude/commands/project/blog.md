@@ -1,4 +1,4 @@
-Write, image, publish, and push a complete Potty Pal blog post. Fully automated end-to-end.
+Generate one complete Potty Pal blog release for the outer publisher. The PowerShell runner validates, updates the queue, commits, and pushes. Never commit, push, edit the queue, or modify infrastructure yourself.
 
 **Topic:** $ARGUMENTS
 
@@ -8,9 +8,9 @@ If $ARGUMENTS is empty or says "auto", pick the next available topic from `.clau
 
 ## PHASE 1: TOPIC SELECTION & RESEARCH
 
-1. **If no topic given**, read `.claude/topics.md` and pick the first `[ ]` topic. If there is no unchecked topic, stop with no file changes. Never invent an unapproved topic. Mark the selected topic `[~]` (in progress).
+1. **If no topic given**, read `.claude/topics.md` and pick the first `[ ]` topic. If there is no unchecked topic, stop with no file changes. Never invent an unapproved topic. Leave queue state to the outer runner; do not edit `.claude/topics.md`.
 
-2. **Research the topic** using WebSearch. Search 3-5 angles: pediatric guidance, parent forums, competing blog posts, age-specific advice, and common myths. Get real data, real scenarios, real ages. No generic filler.
+2. **Research the topic** using WebSearch. Use current primary pediatric guidance (such as AAP/HealthyChildren, NHS, NIDDK) for factual health claims; distinguish everyday coaching from medical diagnosis or treatment. Include at least one directly relevant source link in the article. Never invent studies, statistics, or outcomes. Get real data, real scenarios, real ages. No generic filler.
 
 3. **Read these files:**
    - `voice-profile.md` (tone, banned words, sentence architecture)
@@ -50,26 +50,25 @@ If $ARGUMENTS is empty or says "auto", pick the next available topic from `.clau
 ## PHASE 3: GENERATE HERO IMAGE
 
 9. **Generate a dependable branded hero image** with the local generator:
-   - Run `py scripts/generate-blog-hero.py --title "<post title>" --slug "<slug>" --category "<category-slug>" --output "images/blog/<slug>.webp"`.
+   - Run `python scripts/generate-blog-hero.py --title "<post title>" --slug "<slug>" --category "<category-slug>" --output "images/blog/<slug>.webp"`.
    - Do not install packages, call an external image API, copy another article's image, or substitute a placeholder.
-   - Confirm the command succeeds and the output is a 1200x675 WebP. If it fails, reset the selected topic from `[~]` to `[ ]`, then stop without publishing.
+   - Confirm the command succeeds and the output is a 1200x675 WebP. If it fails, stop and report the failure without publishing or changing the queue.
 
 ## PHASE 4: QUALITY CHECKS
 
-Run all checks BEFORE publishing. If any check fails, reset the selected topic from `[~]` to `[ ]`, then stop. Do not commit or push a partial or failed release.
+Run all checks BEFORE publishing. If any check fails, stop and report the failure; leave the queue unchanged. Do not commit or push a partial or failed release.
 
-### Step 10: AI Detection & Humanization
+### Step 10: Voice and factual review
 
-Use the **`detect-ai`** skill on the post content. This returns a 0-100 AI detection score.
-- **Score 0-30:** Pass. Move on.
-- **Score 31-50:** Borderline. Use the **`humanizer`** skill to rewrite flagged sections.
-- **Score 51+:** Fail. Use the **`humanizer`** skill on the full post.
-
-After humanization (if needed), scan for banned words from voice-profile.md.
+Check the article directly against voice-profile.md: contractions, concrete advice,
+varied sentence length, short paragraphs, no banned phrases or em dashes.
+Do not claim an AI-detection score; no external detector is required or installed.
+Recheck health claims against the primary sources. Include ordinary signs for
+when to contact a pediatrician without diagnosing or prescribing treatment.
 
 ### Step 11: SEO Audit
 
-Use the **`seo-audit`** skill on the HTML content. Verify:
+Verify the following directly in the HTML:
 - Meta description is under 160 characters
 - Heading structure is valid (one H1, H2s for sections, H3s under H2s only)
 - Primary keyword appears in the first paragraph
@@ -79,7 +78,7 @@ Use the **`seo-audit`** skill on the HTML content. Verify:
 
 ### Step 12: GEO / AI Search Optimization
 
-Use the **`ai-seo`** skill on the post content to check AI citation readiness:
+Check answer clarity directly in the article:
 - At least 2 paragraphs contain direct-answer statements an AI search engine could extract
 - Post includes specific ages, timeframes, or statistics (not vague generalities)
 - Content is structured with clear H2 question/topic headers that AI can parse
@@ -125,26 +124,10 @@ Everything has passed quality checks. Now assemble the final HTML.
     - Also add the post to the `const blogPosts = [...]` JavaScript array at the top
     - Same HTML card structure as blog/index.html
 
-20. **Update topics queue** (if topic came from `.claude/topics.md`):
-    - Change the topic from `[~]` to `[x]`
+20. **Leave the topic queue unchanged.** The outer runner marks the selected item published only after the release validator passes.
 
-## PHASE 7: COMMIT AND PUSH
+## PHASE 7: VALIDATE AND HAND OFF
 
-21. **Run the fail-closed release validator:**
-    - `py scripts/validate-blog-release.py --slug "<slug>" --category "<category-slug>"`
-    - If validation fails, do not stage, commit, or push. Reset the selected topic from `[~]` to `[ ]` and report the errors.
-
-22. **Stage and commit only after validation passes:**
-    - `git add blog/<slug>.html images/blog/<slug>.webp sitemap.xml blog/index.html blog/category/<category-slug>.html`
-    - Also add .claude/topics.md if it was modified
-    - Commit message: "Add blog post: <post-title>"
-    - `git push origin master`
-
-23. **Report what was done:**
-    - Post title and slug
-    - Category
-    - Word count and readability grade
-    - AI detection score
-    - Image filename
-    - Commit hash
-    - URL: `https://www.pottypalai.com/blog/<slug>.html`
+21. Run `python scripts/validate-blog-release.py --slug "<slug>" --category "<category-slug>"`.
+22. Do not stage, commit, push, modify older articles, or change infrastructure. Only the new article, its hero image, sitemap, blog index, and one category page may change.
+23. Report the article title/slug, category, word count, factual sources and checks actually completed. The outer runner will independently validate the exact files and publish.
