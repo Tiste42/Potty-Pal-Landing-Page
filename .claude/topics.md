@@ -81,3 +81,42 @@ Status legend: `[ ]` = available, `[x]` = published, `[~]` = in progress
 - [ ] Potty Training Rewards Chart: What Works Without Power Struggles
 - [ ] Nighttime Potty Training Signs: Is Your Child Ready?
 - [ ] How to Keep Potty Training Consistent With Daycare
+
+## Approved Practical Parenting Queue - October 28, 2026
+
+Editorial boundaries: everyday routines, communication, organization, and privacy.
+No diagnosis, treatment advice, guaranteed timelines, or purchase-price offers.
+Check existing posts again before drafting; add a distinct practical angle rather
+than rewriting a broad guide. Use primary sources for any factual health or safety
+statement, and follow the current article-only generation and release validation.
+
+- [ ] Potty Training Log: What to Record and What to Skip
+- [ ] How to Review a Week of Potty Logs Without Chasing Perfect Numbers
+- [ ] A Potty Routine Handoff Note for Babysitters: A Simple Template
+- [ ] A Toddler-Friendly Bathroom Setup Checklist
+- [ ] How to Teach Bathroom Privacy Without Shame
+- [ ] Helping Your Toddler Ask for the Bathroom in a Busy Room
+- [ ] Bathroom Words for Bilingual Families: Keeping the Message Clear
+- [ ] Potty Training With an Older Sibling Who Wants to Help
+- [ ] What to Say When Relatives Comment on Your Child's Accidents
+- [ ] Keeping Your Child's Potty Training Photos and Logs Private
+- [ ] Setting Up a Handwashing Station for Small Hands
+- [ ] Cleaning a Potty Chair: A Simple Everyday Routine
+- [ ] Restocking Your Potty Kit: Spare Clothes, Wet Bags, and Laundry
+- [ ] Potty Training During a Hotel Stay: Setting Up an Unfamiliar Bathroom
+- [ ] Family Gatherings and Potty Breaks: A Plan for Hosts and Parents
+- [ ] Potty Breaks at the Playground Without Ending the Fun
+- [ ] Taking a Recently Trained Toddler to a Restaurant
+- [ ] Potty Training on a Train: Planning for Small Bathrooms
+- [ ] Using a Portable Potty on Outings: Privacy and Cleanup Basics
+- [ ] Potty Breaks During Video Calls When You're the Only Adult Home
+- [ ] Keeping Potty Routines Steady When Parents Work Different Shifts
+- [ ] How to Pack and Label a Preschool Change-of-Clothes Bag
+- [ ] How to Praise Potty Effort Without Turning It Into a Performance
+- [ ] What to Say After an Accident: Calm Scripts for Tired Parents
+- [ ] Choosing Potty Training Books Without Promises or Pressure
+- [ ] Drawing a Bathroom Routine Card With Your Toddler
+- [ ] Potty Training and Busy Mornings: A Getting-Out-the-Door Routine
+- [ ] How to Retire the Sticker Chart Without Pressure
+- [ ] Setting Potty Training Goals Beyond Counting Accidents
+- [ ] How to Talk With Your Partner After a Frustrating Potty Training Day

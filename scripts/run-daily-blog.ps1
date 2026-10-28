@@ -1,3 +1,6 @@
+# Runs through the existing signed-in Windows/Claude task, not a cloud worker.
+# StartWhenAvailable handles missed daily runs; this PC must be available.
+# An exhausted queue writes needs_topics and exits 2 for the operations monitor.
 param(
     [string]$RepositoryRoot = (Split-Path $PSScriptRoot -Parent),
     [ValidateRange(1, 90)][int]$MaximumMinutes = 45,
@@ -76,8 +79,10 @@ try {
     $queuePath = Join-Path $clone '.claude/topics.md'
     $topicLine = @(Get-Content -LiteralPath $queuePath | Where-Object { $_ -match '^- \[ \] ' }) | Select-Object -First 1
     if (-not $topicLine) {
-        Write-Log 'No approved topic remains; nothing to publish.'
-        $result = 0
+        $message = 'Approved blog topic queue is exhausted. Add reviewed topics to .claude/topics.md before the next publication.'
+        Write-Log "ACTION REQUIRED: $message"
+        @{ status='needs_topics'; date=(Get-Date -Format 'yyyy-MM-dd'); at=[DateTime]::UtcNow.ToString('o'); remainingTopics=0; action=$message } | ConvertTo-Json | Set-Content -LiteralPath $statePath -Encoding UTF8
+        $result = 2
         exit $result
     }
     $topic = $topicLine.Substring(6)
