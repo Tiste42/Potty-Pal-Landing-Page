@@ -1,4 +1,4 @@
-Generate one complete Potty Pal blog release for the outer publisher. The PowerShell runner validates, updates the queue, commits, and pushes. Never commit, push, edit the queue, or modify infrastructure yourself.
+Generate one complete Potty Pal blog release for the outer publisher. The PowerShell runner integrates catalogs, validates, updates the queue, commits, and pushes. Never commit, push, edit the queue, or modify infrastructure yourself.
 
 **Topic:** $ARGUMENTS
 
@@ -10,7 +10,7 @@ If $ARGUMENTS is empty or says "auto", pick the next available topic from `.clau
 
 1. **If no topic given**, read `.claude/topics.md` and pick the first `[ ]` topic. If there is no unchecked topic, stop with no file changes. Never invent an unapproved topic. Leave queue state to the outer runner; do not edit `.claude/topics.md`.
 
-2. **Research the topic** using WebSearch. Use current primary pediatric guidance (such as AAP/HealthyChildren, NHS, NIDDK) for factual health claims; distinguish everyday coaching from medical diagnosis or treatment. Include at least one directly relevant source link in the article. Never invent studies, statistics, or outcomes. Get real data, real scenarios, real ages. No generic filler.
+2. **Research the topic** using WebSearch. Use current primary pediatric guidance (such as AAP/HealthyChildren, NHS, NIDDK) for factual health claims; distinguish everyday coaching from medical diagnosis or treatment. Read the primary source itself with WebFetch, not just search snippets, and include at least one directly relevant source link in the article. Do not promise fixed recovery timelines or blanket rules about diapers. Respect the pediatric source's guidance to assess physical causes and allow a break when needed. Never invent studies, statistics, or outcomes. Get real data, real scenarios, real ages. No generic filler.
 
 3. **Read these files:**
    - `voice-profile.md` (tone, banned words, sentence architecture)
@@ -100,34 +100,16 @@ Everything has passed quality checks. Now assemble the final HTML.
     - Set the featured image src to `../images/blog/<slug>.webp` with descriptive alt text
     - Insert the article content HTML
     - Fill in the relatedPosts JavaScript array with 2-3 related posts
-    - **Verify related post image filenames** by checking what actually exists in `images/blog/` with Glob. Do NOT guess filenames — use the real file that exists on disk.
+    - **Verify related post image filenames** by checking what actually exists in `images/blog/` with Glob. Do NOT guess filenames â€” use the real file that exists on disk.
     - Update the CTA section heading and description (vary from other posts)
     - **Store picker modal:** The download button must show both App Store and Play Store on desktop (not default to one store). Include the `trackAndNavigate()`, `showStorePicker()`, `closeStorePicker()` functions and the `storePicker` modal HTML before `</body>`. The `handleDownloadClick()` must call `showStorePicker()` when `storeLink === 'both'`. Copy this exactly from `blog/post-template.html`.
 
-## PHASE 6: UPDATE SITE FILES
+## PHASE 6: HAND OFF TO THE OUTER RUNNER
 
-17. **Update `sitemap.xml`:**
-    - Add a new `<url>` entry for the blog post
-    - Use format: `https://www.pottypalai.com/blog/<slug>.html`
-    - Set lastmod to today's date
-    - Set changefreq to "monthly" and priority to "0.8"
+Do not edit sitemap.xml, blog/index.html, any category page, the topic queue, existing articles, memory files, or infrastructure. Do not stage, commit, or push.
 
-18. **Update `blog/index.html`:**
-    - Add a new **hardcoded HTML post card** inside the `<div class="posts-container" id="postsGrid">` element, BEFORE the first existing card
-    - Also add the post to the `const blogPosts = [...]` JavaScript array at the top
-    - The HTML card is what actually displays on the page (the JS array is not rendered by default)
-    - Match the exact HTML structure of existing cards (a.post-card > img.post-card-image + div.post-card-content)
-    - Place it at the top (newest first)
+The outer runner reads the new article's H1, description, hero alt, category and publication date, inserts catalog entries deterministically, independently validates the whole release, and publishes. The H1 must exactly match the approved queue title. Use today's publication date.
 
-19. **Update the relevant category page** (`blog/category/<category-slug>.html`):
-    - Add a new **hardcoded HTML post card** inside the `<div class="posts-container" id="postsGrid">` element, BEFORE existing cards
-    - Also add the post to the `const blogPosts = [...]` JavaScript array at the top
-    - Same HTML card structure as blog/index.html
+Before handing off, check the new article and its hero image. The full release validator is run by the outer runner after catalog integration, so missing catalog references at this generation stage are expected.
 
-20. **Leave the topic queue unchanged.** The outer runner marks the selected item published only after the release validator passes.
-
-## PHASE 7: VALIDATE AND HAND OFF
-
-21. Run `python scripts/validate-blog-release.py --slug "<slug>" --category "<category-slug>"`.
-22. Do not stage, commit, push, modify older articles, or change infrastructure. Only the new article, its hero image, sitemap, blog index, and one category page may change.
-23. Report the article title/slug, category, word count, factual sources and checks actually completed. The outer runner will independently validate the exact files and publish.
+Report the article title/slug, category, word count, primary sources actually read and checks actually completed. Never claim the article is published; that happens in the outer runner.

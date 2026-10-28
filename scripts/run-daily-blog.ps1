@@ -1,7 +1,8 @@
 param(
     [string]$RepositoryRoot = (Split-Path $PSScriptRoot -Parent),
     [ValidateRange(1, 90)][int]$MaximumMinutes = 45,
-    [switch]$CheckOnly
+    [switch]$CheckOnly,
+    [string]$PreparedDraftPath
 )
 $ErrorActionPreference = 'Stop'
 $root = [IO.Path]::GetFullPath($RepositoryRoot)
@@ -81,12 +82,25 @@ try {
     }
     $topic = $topicLine.Substring(6)
     Write-Log "Generating one approved article: $topic"
+    if ($PreparedDraftPath) {
+        $prepared = [IO.Path]::GetFullPath($PreparedDraftPath)
+        $allowedRoot = [IO.Path]::GetFullPath((Join-Path $root '.claude/publish-runs')) + [IO.Path]::DirectorySeparatorChar
+        if (-not $prepared.StartsWith($allowedRoot, [StringComparison]::OrdinalIgnoreCase)) { throw 'Prepared draft must be inside this publisher run directory.' }
+        $draftFiles = @(Invoke-Git @('-C', $prepared, 'ls-files', '--others', '--exclude-standard'))
+        $draftArticles = @($draftFiles | Where-Object { $_ -match '^blog/[a-z0-9-]+\.html$' })
+        if ($draftArticles.Count -ne 1) { throw 'Prepared draft must contain exactly one new article.' }
+        $draftSlug = [IO.Path]::GetFileNameWithoutExtension($draftArticles[0])
+        foreach ($relative in @($draftArticles[0], "images/blog/$draftSlug.webp")) {
+            Copy-Item -LiteralPath (Join-Path $prepared $relative) -Destination (Join-Path $clone $relative)
+        }
+        Write-Log "Using reviewed prepared draft: $draftSlug"
+    } else {
     $claude = Join-Path $env:APPDATA 'npm/claude.cmd'
     if (-not (Test-Path -LiteralPath $claude)) { throw 'Existing Claude CLI was not found.' }
     $outPath = Join-Path $logRoot "blog-$runId-worker.log"
     $errPath = Join-Path $logRoot "blog-$runId-worker-error.log"
-    $allowed = 'Read,Glob,Grep,WebSearch,Write,Edit,MultiEdit,Bash(git status *),Bash(git diff *),Bash(python scripts/generate-blog-hero.py *),Bash(python scripts/validate-blog-release.py *)'
-    $prompt = 'Run /project:blog auto. Generate exactly one complete article. Do not edit the topic queue, commit, push, modify other articles, or change infrastructure. The outer runner validates and publishes. Do not fabricate detection scores or claim tests that did not run.'
+    $allowed = 'Read,Glob,Grep,WebSearch,WebFetch,Write,Edit,MultiEdit,Bash(git status *),Bash(git diff *),Bash(python scripts/generate-blog-hero.py *),Bash(python scripts/validate-blog-release.py *)'
+    $prompt = 'Run /project:blog auto. Generate exactly one complete article. Only create the new article HTML and its hero WebP. Do not edit catalog pages, sitemap, topic queue, memory files, other articles, or infrastructure; do not commit or push. The outer runner validates and publishes. Do not fabricate detection scores or claim tests that did not run.'
     $arguments = '/d /s /c ""' + $claude + '" --permission-mode acceptEdits --permission-prompts none --allowedTools "' + $allowed + '" --disallowedTools "Bash(git add *),Bash(git commit *),Bash(git push *)" --print "' + $prompt + '""'
     $process = Start-Process -FilePath $env:ComSpec -ArgumentList $arguments -WorkingDirectory $clone -WindowStyle Hidden -RedirectStandardOutput $outPath -RedirectStandardError $errPath -PassThru
     $null = $process.Handle
@@ -97,6 +111,7 @@ try {
     }
     $process.Refresh()
     if ($process.ExitCode -ne 0) { throw "Generation failed with exit $($process.ExitCode); draft retained at $clone" }
+    }
     $newPaths = @(Invoke-Git @('-C', $clone, 'ls-files', '--others', '--exclude-standard'))
     $articles = @($newPaths | Where-Object { $_ -match '^blog/[a-z0-9-]+\.html$' })
     if ($articles.Count -ne 1) { throw "Expected exactly one new article, found $($articles.Count). Draft retained." }
@@ -107,11 +122,13 @@ try {
     if (-not $categoryMatch.Success) { throw 'Article category link missing.' }
     $category = $categoryMatch.Groups[1].Value
     $allowedPaths = @($article, "images/blog/$slug.webp", 'sitemap.xml', 'blog/index.html', "blog/category/$category.html")
-    $changed = @((Invoke-Git @('-C', $clone, 'diff', '--name-only')) + $newPaths | Select-Object -Unique)
+    $changed = @(@(Invoke-Git @('-C', $clone, 'diff', '--name-only')) + $newPaths | Select-Object -Unique)
     $unexpected = @($changed | Where-Object { $_ -notin $allowedPaths })
     if ($unexpected.Count) { throw "Unexpected file changes: $($unexpected -join ', '). Draft retained; no publish." }
     Push-Location $clone
     try {
+        & python scripts/integrate-blog-release.py --slug $slug --category $category --title $topic 2>&1 | ForEach-Object { Write-Log "$_" }
+        if ($LASTEXITCODE -ne 0) { throw 'Catalog integration failed; nothing was published.' }
         & python scripts/validate-blog-release.py --slug $slug --category $category 2>&1 | ForEach-Object { Write-Log "$_" }
         if ($LASTEXITCODE -ne 0) { throw 'Release validation failed; nothing was published.' }
     } finally { Pop-Location }
