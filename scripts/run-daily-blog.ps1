@@ -19,7 +19,11 @@ function Write-Log([string]$Message) {
     Write-Output $line
 }
 function Invoke-Git([string[]]$Arguments) {
-    $output = & git @Arguments 2>&1
+    # Windows PowerShell turns git's normal stderr progress into error records.
+    # Interpret the native exit code, not the stream used for progress messages.
+    $priorPreference = $ErrorActionPreference
+    try { $ErrorActionPreference = 'Continue'; $output = & git @Arguments 2>&1 }
+    finally { $ErrorActionPreference = $priorPreference }
     if ($LASTEXITCODE -ne 0) { throw "git failed ($LASTEXITCODE): $($output -join ' ')" }
     return $output
 }
@@ -57,6 +61,17 @@ try {
     $clone = Join-Path $root ".claude/publish-runs/$runId"
     New-Item -ItemType Directory -Path (Split-Path $clone -Parent) -Force | Out-Null
     Invoke-Git @('clone', '--depth', '1', '--single-branch', '--branch', 'master', $remote, $clone) | Out-Null
+    # Remote content is the fallback if a previous push succeeded but writing
+    # this PC's state file failed. A retry must not publish a second post today.
+    $today = Get-Date -Format 'yyyy-MM-dd'
+    $publishedToday = @(Get-ChildItem -LiteralPath (Join-Path $clone 'blog') -Filter '*.html' -File | Where-Object {
+        ([IO.File]::ReadAllText($_.FullName)) -match ('"datePublished"\s*:\s*"' + [regex]::Escape($today))
+    })
+    if ($publishedToday.Count) {
+        Write-Log 'Skipped: remote site already contains an article published today.'
+        $result = 0
+        exit $result
+    }
     $queuePath = Join-Path $clone '.claude/topics.md'
     $topicLine = @(Get-Content -LiteralPath $queuePath | Where-Object { $_ -match '^- \[ \] ' }) | Select-Object -First 1
     if (-not $topicLine) {
