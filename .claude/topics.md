@@ -79,7 +79,7 @@ Status legend: `[ ]` = available, `[x]` = published, `[~]` = in progress
 - [x] Potty Training Regression After Daycare or a New Sibling
 - [x] Toddler Hides to Poop: A Calm Step-by-Step Response
 - [x] Potty Training Rewards Chart: What Works Without Power Struggles
-- [ ] Nighttime Potty Training Signs: Is Your Child Ready?
+- [x] Nighttime Potty Training Signs: Is Your Child Ready?
 - [ ] How to Keep Potty Training Consistent With Daycare
 
 ## Approved Practical Parenting Queue - October 28, 2026
